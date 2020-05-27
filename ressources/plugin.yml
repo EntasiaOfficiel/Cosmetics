@@ -1,0 +1,12 @@
+name: Cosmetiques
+authors:
+  - iTrooz_
+  - Stargeyt
+main: fr.entasia.cosmetiques.Main
+depend:
+  - Libraries
+version: '1.0'
+commands:
+  test:
+
+  test2:
