@@ -2,36 +2,12 @@ package fr.entasia.cosmetiques.utils.pets;
 
 import fr.entasia.cosmetiques.utils.pets.as.ASFrame;
 import fr.entasia.cosmetiques.utils.pets.as.ASStruc;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public enum Pets {
-
-	// UN CURRENTPET CONTIENT UNE ORIGINE ET DES ASDATA, QUI CONTIENNENT L'ENTITE DE L'ARMORSTAND ET UN ASSTRUC, QUI CONTIENT DES ASFRAMES
-
-	PET_SNOWMAN(201, new ItemStack(Material.PUMPKIN), "§7Bonhomme de neige","§7Faites gaffe ,faudrait pas qu'il fonde",  1000,false,
-			new ASStruc().setFrameRate(0).setSmall().setFrames(
-					new ASFrame().setLocation(0, -0.5, 0).setHead(new ItemStack(Material.SNOW_BLOCK))
-			),
-			new ASStruc().setFrameRate(0).setSmall().setFrames(
-					new ASFrame().setLocation(0, -0.1, 0).setHead(new ItemStack(Material.SNOW_BLOCK))
-			),
-			new ASStruc().setFrameRate(0).setSmall().setFrames(
-					new ASFrame().setLocation(0, 0.35, 0).setHead(new ItemStack(Material.PUMPKIN))
-			),
-			new ASStruc().setFrameRate(4).setSmall().setFrames(
-					new ASFrame().setRightArmPos( 300, 90, 0).setLeftArmPos( 300, 270, 0)
-							.setRightArm(new ItemStack(Material.BLAZE_ROD)).setLeftArm(new ItemStack(Material.BLAZE_ROD)).setLocation(0, 0, 0),
-					new ASFrame().setRightArmPos( 305, 90, 0).setLeftArmPos(305, 270, 0),
-					new ASFrame().setRightArmPos( 310, 90, 0).setLeftArmPos(310, 270, 0),
-					new ASFrame().setRightArmPos( 315, 90, 0).setLeftArmPos(315, 270, 0),
-					new ASFrame().setRightArmPos( 320, 90, 0).setLeftArmPos(320, 270, 0),
-					new ASFrame().setRightArmPos( 315, 90, 0).setLeftArmPos(315, 270, 0),
-					new ASFrame().setRightArmPos( 310, 90, 0).setLeftArmPos(310, 270, 0),
-					new ASFrame().setRightArmPos( 305, 90, 0).setLeftArmPos(310, 270, 0)
-			)
-	),
 
 	PET_DOG(202, PetsUtils.getSkull(new ItemStack(Material.SKULL_ITEM, 1, (short)3),
 			"pet:dog", "66381e813ef32aaaabcfe2a84f913a65691bb32b7d82dc2222dd58a5534c"), "§7Chien","§7Le meilleur amis de l'homme, aussi sur Entasia",  1000,false,
@@ -68,26 +44,24 @@ public enum Pets {
 	),
 
 	PET_PANDA(206, PetsUtils.getSkull(new ItemStack(Material.SKULL_ITEM, 1, (short)3),
-			"pet:panda", "d8cdd4f285632c25d762ece25f4193b966c2641b15d9bdbc0a113023de76ab"), "§7Panda","§7Je ne suis ni noir ni blanc, je suis un panda",  1000,true,
+			"pet:panda_menu", "d8cdd4f285632c25d762ece25f4193b966c2641b15d9bdbc0a113023de76ab"), "§7Panda","§7Roule, roule petit panda",  1000,true,
 			new ASStruc().setFrameRate(3).setFrames(
-					new ASFrame().setLocation(0, -1.4, -0.1).setHead(new ItemStack(Material.SKULL_ITEM,1, (short) 3), "pet:panda", "d8cdd4f285632c25d762ece25f4193b966c2641b15d9bdbc0a113023de76ab").setHeadPos(0, 0, 270),
-					new ASFrame().setHeadPos(0, 22.5, 270),
-					new ASFrame().setHeadPos(0, 45, 270),
-					new ASFrame().setHeadPos(0, 67.5, 270),
-					new ASFrame().setHeadPos(0, 90, 270),
-					new ASFrame().setHeadPos(0, 112.5, 270),
-					new ASFrame().setHeadPos(0, 125, 270),
-					new ASFrame().setHeadPos(0, 147.5, 270),
-					new ASFrame().setHeadPos(0, 45, 270),
-					new ASFrame().setHeadPos(0, 170, 270),
-					new ASFrame().setHeadPos(0, 192.5, 270),
-					new ASFrame().setHeadPos(0, 215, 270),
-					new ASFrame().setHeadPos(0, 237.5, 270),
-					new ASFrame().setHeadPos(0, 260, 270),
-					new ASFrame().setHeadPos(0, 282.5, 270),
-					new ASFrame().setHeadPos(0, 305, 270),
-					new ASFrame().setHeadPos(0, 327.5, 270),
-					new ASFrame().setHeadPos(0, 350, 270)
+					new ASFrame().setLocation(0, -1.1, -0.1).setHead(new ItemStack(Material.SKULL_ITEM,1, (short) 3), "pet:panda", "10f982d56a173a4392a9b791cb29b88f1cde6f7b25e2f5dc5325706257da3e3a").setHeadPos(0, 0, 90),
+					new ASFrame().setHeadPos(0, 337.5, 90),
+					new ASFrame().setHeadPos(0, 315, 90),
+					new ASFrame().setHeadPos(0, 292.5, 90),
+					new ASFrame().setHeadPos(0, 270, 90),
+					new ASFrame().setHeadPos(0, 247.5, 90),
+					new ASFrame().setHeadPos(0, 225, 90),
+					new ASFrame().setHeadPos(0, 202.5, 90),
+					new ASFrame().setHeadPos(0, 180, 90),
+					new ASFrame().setHeadPos(0, 157.5, 90),
+					new ASFrame().setHeadPos(0, 135, 90),
+					new ASFrame().setHeadPos(0, 112.5, 90),
+					new ASFrame().setHeadPos(0, 90, 90),
+					new ASFrame().setHeadPos(0, 67.5, 90),
+					new ASFrame().setHeadPos(0, 45, 90),
+					new ASFrame().setHeadPos(0, 22.5, 90)
 			)
 	),
 
@@ -107,16 +81,31 @@ public enum Pets {
 			)
 	),
 
-	PET_SLIME(209, PetsUtils.getSkull(new ItemStack(Material.SKULL_ITEM, 1, (short)3),
-			"pet:slime","5accc1b1d40d70d8bf6f2136b86edd9d1595e3a07fa2ea97b73f9bc5e90ae3b5"), "§7Slime multicolore","§7J'aime les slimes , pas vous ?", 1000,false,
+	PET_LAPIN(208, PetsUtils.getSkull(new ItemStack(Material.SKULL_ITEM, 1, (short)3),
+			"pet:lapin","17ab6eb88246489f4245e15e2035f23476d058e1ea308276387316aabcc52ed"), "§7Lapin","§7Malheuresement ça ne vous aidera pas à sauter plus haut",  1000,false,
 			new ASStruc().setFrameRate(0).setFrames(
 					new ASFrame().setLocation(0, -1.4, -0.1).setHead(new ItemStack(Material.SKULL_ITEM,1, (short) 3),
-							"pet:slime","5accc1b1d40d70d8bf6f2136b86edd9d1595e3a07fa2ea97b73f9bc5e90ae3b5").setHeadPos(0, 0, 0)
+							"pet:lapin","17ab6eb88246489f4245e15e2035f23476d058e1ea308276387316aabcc52ed").setHeadPos(0, 0, 0)
 			)
 	),
 
-	PET_PINGUIN(210, PetsUtils.getSkull(new ItemStack(Material.SKULL_ITEM, 1, (short)3), "pet:pinguin", "d3c57facbb3a4db7fd55b5c0dc7d19c19cb0813c748ccc9710c714727551f5b9"), "§7Pinguin","§7Qui n'a jamais rêvé d'avoir un petit pinguin qui se dandine ?", 1000,false,
-			new ASStruc().setFrameRate(8).setSmall().setFrames(
+	PET_SLIME(209, PetsUtils.getSkull(new ItemStack(Material.SKULL_ITEM, 1, (short)3),
+			"pet:slime","5accc1b1d40d70d8bf6f2136b86edd9d1595e3a07fa2ea97b73f9bc5e90ae3b5"), "§7Slime multicolore","§7J'aime les slimes , pas vous ?", 1000,false,
+			new ASStruc().setFrameRate(0).setFrames(
+					new ASFrame().setLocation(0, -1.4, 0).setHead(new ItemStack(Material.SKULL_ITEM,1, (short) 3),
+							"pet:slime","5accc1b1d40d70d8bf6f2136b86edd9d1595e3a07fa2ea97b73f9bc5e90ae3b5").setHeadPos(0, 0, 0),
+					new ASFrame().setLocation(0, -1, 0),
+					new ASFrame().setLocation(0, -0.6, 0),
+					new ASFrame().setLocation(0, -0.2, 0),
+					new ASFrame().setLocation(0, -0.1, 0),
+					new ASFrame().setLocation(0, -0.2, 0),
+					new ASFrame().setLocation(0, -0.6, 0),
+					new ASFrame().setLocation(0, -1, 0)
+			)
+	),
+
+	PET_PINGUIN(210, PetsUtils.getSkull(new ItemStack(Material.SKULL_ITEM, 1, (short)3), "pet:pinguin", "d3c57facbb3a4db7fd55b5c0dc7d19c19cb0813c748ccc9710c714727551f5b9"), "§7Pinguin","§7Qui n'a jamais rêvé d'avoir un petit pinguin qui se dandine ?", 1000,true,
+			new ASStruc().setFrameRate(6).setSmall().setFrames(
 					new ASFrame().setHeadPos(0,0,0).setLocation(0, -0.4, -0.1).setHead(new ItemStack(Material.SKULL_ITEM,1, (short) 3), "pet:pinguin_body", "acea5e6a750c3ce1aa6c1419781f4f6971905d056e46cbe8797e70a528c0e08d"),
 					new ASFrame().setHeadPos(0, 0, 5),
 					new ASFrame().setHeadPos(0, 0, 0),
@@ -141,6 +130,103 @@ public enum Pets {
 					new ASFrame().setLocation(0, -0.05, -0.1).setHead(new ItemStack(Material.SKULL_ITEM,1, (short) 3), "pet:bb8_head", "42d271f82674916dcb47b372a572f61e7472fe063b2c9246aeeb7c57a8835").setHeadPos(0, 0, 0)
 
 			)
+	),
+
+	PET_SOLAR_SYSTEM(212, PetsUtils.getSkull(new ItemStack(Material.SKULL_ITEM, 1,(short)3),"pet:sun", "c11234820a1e7bfb912b522aecf34bfcb569f02bf5836e669a29bae99737e522"), "§7Système solaire","§7Pour une fois , vous êtes le centre du système solaire !",1000,false,
+			new ASStruc().setFrameRate(0).setFrames(
+					new ASFrame().setHeadPos(0,0,0).setLocation(0,1,0).setHead(new ItemStack(Material.SKULL_ITEM, 1,(short)3),"pet:sun", "c11234820a1e7bfb912b522aecf34bfcb569f02bf5836e669a29bae99737e522")
+
+			),
+			new ASStruc().setFrameRate(7).setFrames(
+					new ASFrame().setHeadPos(0,0,0).setLocation(0,1,-2.5).setHead(new ItemStack(Material.SKULL_ITEM, 1,(short)3),"pet:earth", "2e2cc42015e6678f8fd49ccc01fbf787f1ba2c32bcf559a015332fc5db50"),
+					new ASFrame().setLocation(1.77,1,-1.77),
+					new ASFrame().setLocation(2.5,1,0),
+					new ASFrame().setLocation(1.77,1,1.77),
+					new ASFrame().setLocation(0,1,2.5),
+					new ASFrame().setLocation(-1.77,1,1.77),
+					new ASFrame().setLocation(-2.5,1,0),
+					new ASFrame().setLocation(-1.77,1,-1.77)
+
+			),
+			new ASStruc().setFrameRate(7).setFrames(
+					new ASFrame().setHeadPos(0,0,0).setLocation(-1.77,1,1.77).setHead(new ItemStack(Material.SKULL_ITEM, 1,(short)3),"pet:saturn", "665cd3a24f193371eebac9a71c48f408a935afc4b435f1fb7b9843e6587298f"),
+					new ASFrame().setLocation(-2.5,1,0),
+					new ASFrame().setLocation(-1.77,1,-1.77),
+					new ASFrame().setLocation(0,1,-2.5),
+					new ASFrame().setLocation(1.77,1,-1.77),
+					new ASFrame().setLocation(2.5,1,0),
+					new ASFrame().setLocation(1.77,1,1.77),
+					new ASFrame().setLocation(0,1,2.5)
+
+			),
+			new ASStruc().setFrameRate(7).setFrames(
+					new ASFrame().setHeadPos(0,0,0).setLocation(-1.77,1,-1.77).setHead(new ItemStack(Material.SKULL_ITEM, 1,(short)3),"pet:mars", "777d616bc44ac9b3730fed47f29a378f88a16728c67048c1a387d229e1cba"),
+					new ASFrame().setLocation(0,1,-2.5),
+					new ASFrame().setLocation(1.77,1,-1.77),
+					new ASFrame().setLocation(2.5,1,0),
+					new ASFrame().setLocation(1.77,1,1.77),
+					new ASFrame().setLocation(0,1,2.5),
+					new ASFrame().setLocation(-1.77,1,1.77),
+					new ASFrame().setLocation(-2.5,1,0)
+
+			),
+			new ASStruc().setFrameRate(7).setFrames(
+					new ASFrame().setHeadPos(0,0,0).setLocation(-2.5,1,0).setHead(new ItemStack(Material.SKULL_ITEM, 1,(short)3),"pet:jupiter", "b8aaa8a3561e80ef1f9561f17211e770de18a9f98c2691ecf9d696559a1b918c"),
+					new ASFrame().setLocation(-1.77,1,-1.77),
+					new ASFrame().setLocation(0,1,-2.5),
+					new ASFrame().setLocation(1.77,1,-1.77),
+					new ASFrame().setLocation(2.5,1,0),
+					new ASFrame().setLocation(1.77,1,1.77),
+					new ASFrame().setLocation(0,1,2.5),
+					new ASFrame().setLocation(-1.77,1,1.77)
+
+			),
+			new ASStruc().setFrameRate(7).setFrames(
+					new ASFrame().setHeadPos(0,0,0).setLocation(2.5,1,0).setHead(new ItemStack(Material.SKULL_ITEM, 1,(short)3),"pet:mercury", "97fb27a1a11ba456c0a13f90901364ced9ecad8fe9c99b6838ff5f4dab1f6191"),
+					new ASFrame().setLocation(1.77,1,1.77),
+					new ASFrame().setLocation(0,1,2.5),
+					new ASFrame().setLocation(-1.77,1,1.77),
+					new ASFrame().setLocation(-2.5,1,0),
+					new ASFrame().setLocation(-1.77,1,-1.77),
+					new ASFrame().setLocation(0,1,-2.5),
+					new ASFrame().setLocation(1.77,1,-1.77)
+			),
+
+			new ASStruc().setFrameRate(7).setFrames(
+					new ASFrame().setHeadPos(0,0,0).setLocation(1.77,1,-1.77).setHead(new ItemStack(Material.SKULL_ITEM, 1,(short)3),"pet:venus", "0ef147ddc908e6825c229997aa529761f51691a11c955129a233632d554875e"),
+					new ASFrame().setLocation(2.5,1,0),
+					new ASFrame().setLocation(1.77,1,1.77),
+					new ASFrame().setLocation(0,1,2.5),
+					new ASFrame().setLocation(-1.77,1,1.77),
+					new ASFrame().setLocation(-2.5,1,0),
+					new ASFrame().setLocation(-1.77,1,-1.77),
+					new ASFrame().setLocation(0,1,-2.5)
+
+			),
+			new ASStruc().setFrameRate(7).setFrames(
+					new ASFrame().setHeadPos(0,0,0).setLocation(1.77,1,1.77).setHead(new ItemStack(Material.SKULL_ITEM, 1,(short)3),"pet:neptune", "87d66f93909a6d4641c653082e04749691de82cf77232bd20ab32adf4f"),
+					new ASFrame().setLocation(0,1,2.5),
+					new ASFrame().setLocation(-1.77,1,1.77),
+					new ASFrame().setLocation(-2.5,1,0),
+					new ASFrame().setLocation(-1.77,1,-1.77),
+					new ASFrame().setLocation(0,1,-2.5),
+					new ASFrame().setLocation(1.77,1,-1.77),
+					new ASFrame().setLocation(2.5,1,0)
+
+			),
+			new ASStruc().setFrameRate(7).setFrames(
+					new ASFrame().setHeadPos(0,0,0).setLocation(0,1,2.5).setHead(new ItemStack(Material.SKULL_ITEM, 1,(short)3),"pet:uranus", "aa6dd75f41e4268e0a1269050907aa6746ffd37a4a929e732524642c336bc"),
+					new ASFrame().setLocation(-1.77,1,1.77),
+					new ASFrame().setLocation(-2.5,1,0),
+					new ASFrame().setLocation(-1.77,1,-1.77),
+					new ASFrame().setLocation(0,1,-2.5),
+					new ASFrame().setLocation(1.77,1,-1.77),
+					new ASFrame().setLocation(2.5,1,0),
+					new ASFrame().setLocation(1.77,1,1.77)
+
+
+			)
+
 	);
 
 
@@ -155,7 +241,7 @@ public enum Pets {
 	public boolean moveOnly;
 	public ASStruc[] data;
 
-	Pets(int id, ItemStack item, String name,String description, int price, boolean moveOnly, ASStruc... data){
+	Pets(int id, ItemStack item, String name, String description, int price, boolean moveOnly,ASStruc... data){
 		this.description= description;
 		this.id = id;
 		this.itemStack = item;

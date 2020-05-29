@@ -76,6 +76,7 @@ public class PetsUtils {
 			asd.ent.setArms(true);
 			asd.ent.setCollidable(false);
 			asd.ent.setSilent(true);
+			asd.ent.setMarker(true);
 
 			asd.ent.setSmall(asd.struct.small);
 

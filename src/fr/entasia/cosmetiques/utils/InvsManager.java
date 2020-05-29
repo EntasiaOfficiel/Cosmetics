@@ -10,7 +10,9 @@ import fr.entasia.cosmetiques.utils.pets.CurrentPet;
 import fr.entasia.cosmetiques.utils.pets.Pets;
 import fr.entasia.cosmetiques.utils.pets.PetsUtils;
 import fr.entasia.cosmetiques.utils.pets.as.ASData;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -118,24 +120,26 @@ public class InvsManager {
 		Inventory inv = particleMenu.createInv(slot/9, "§7Menu des particules");
 		int nextSlot = 1;
 		for(Particles c : Particles.values()){
+			ItemStack item = c.itemStack.clone();
+			ItemMeta meta = item.getItemMeta();
+			ArrayList<String> lore = new ArrayList<>(Collections.singletonList(c.description));
 
-				ArrayList<String> lore = new ArrayList<>(Arrays.asList(c.description));
-				if(!Utils.haveCosm(c.id,p.getUniqueId(), false)){
-					lore.add("§cVous n'avez pas encore débloqué cette particule");
-				}else{
-					lore.add("§aVous possédez cette particule");
-				}
-				ItemStack item = c.itemStack;
-				ItemMeta meta = item.getItemMeta();
-				if(item.getType().equals(Material.POTION)){
-					meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
-				}
-				meta.setDisplayName(c.nom);
-				meta.setLore(lore);
-				item.setItemMeta(meta);
-				inv.setItem(nextSlot, item);
-				nextSlot= nextSlot+2;
+			if(!Utils.haveCosm(c.id,p.getUniqueId(), false)){
+				lore.add("§cVous n'avez pas encore débloqué cette particule");
+			}else{
 
+				lore.add("§aVous possédez cette particule");
+				meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+				meta.addEnchant(Enchantment.LURE, 1, false);
+			}
+			if(item.getType().equals(Material.POTION)){
+				meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+			}
+			meta.setDisplayName(c.nom);
+			meta.setLore(lore);
+			item.setItemMeta(meta);
+			inv.setItem(nextSlot, item);
+			nextSlot= nextSlot+2;
 		}
 		ItemStack item = new ItemStack(Material.REDSTONE_BLOCK);
 		ItemMeta meta=  item.getItemMeta();
@@ -151,8 +155,7 @@ public class InvsManager {
 		@Override
 		public void onMenuClick(MenuClickEvent e){
 			for(Pets c : Pets.values()){
-
-				if(c.itemStack.getItemMeta().getDisplayName().equals(e.item.getItemMeta().getDisplayName())){
+				if(c.name.equalsIgnoreCase(e.item.getItemMeta().getDisplayName())){
 					if(Utils.haveCosm(c.id,e.player.getUniqueId(), true)){
 						e.player.sendMessage("§7Vous avez activé le pet "+c.name);
 						PetsUtils.spawnPet(e.player, c);
@@ -199,16 +202,17 @@ public class InvsManager {
 		int nextSlot = 1;
 		for(Pets c : Pets.values()){
 
-			ArrayList<String> lore = new ArrayList<>(Arrays.asList(c.description));
+			ItemStack item = c.itemStack.clone();
+			ItemMeta meta = item.getItemMeta();
+			ArrayList<String> lore = new ArrayList<>(Collections.singletonList(c.description));
 
 			if(!Utils.haveCosm(c.id,p.getUniqueId(), true)){
 				lore.add("§cVous n'avez pas encore débloqué ce Pet");
 			}else{
+				meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+				meta.addEnchant(Enchantment.LURE, 1, false);
 				lore.add("§aVous possédez ce Pet");
 			}
-			ItemStack item = c.itemStack;
-
-			ItemMeta meta = item.getItemMeta();
 			if(item.equals(new ItemStack(Material.POTION))){
 				meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
 			}
@@ -238,7 +242,13 @@ public class InvsManager {
 
 		@Override
 		public void onMenuClick(MenuClickEvent e){
-			if(e.item.getItemMeta().getDisplayName().equalsIgnoreCase("§cAnnuler")) e.player.closeInventory();
+			if(e.item.getItemMeta().getDisplayName().equalsIgnoreCase("§cAnnuler")){
+
+
+				e.player.closeInventory();
+				e.player.sendMessage("§cAchat annulé");
+				return;
+			}
 			UUID uuid = e.player.getUniqueId();
 			Particles c = (Particles)e.data;
 			if(MoneyUtils.getMoney(uuid)>= c.price){
