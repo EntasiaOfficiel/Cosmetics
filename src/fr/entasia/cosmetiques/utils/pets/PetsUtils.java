@@ -95,6 +95,16 @@ public class PetsUtils {
 		CosmeticPlayer.getCosPlay(p).pet = cp;
 	}
 
+	public static void removePet(CosmeticPlayer cp){
+		CurrentPet pet = cp.pet;
+		cp.pet = null;
+		pet.origin.remove();
+
+		for (ASData asd : pet.armor_stands) {
+			asd.ent.remove();
+		}
+	}
+
 	public static Vector rotate(Vector vector, double degres) {
 		double angle= Math.toRadians(degres);
 		double x = (vector.getX() * Math.cos(angle) - vector.getZ() * Math.sin(angle));

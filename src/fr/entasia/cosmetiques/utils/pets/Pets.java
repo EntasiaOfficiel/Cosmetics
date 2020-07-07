@@ -241,12 +241,14 @@ public enum Pets {
 	public ItemStack itemStack;
 	public String name;
 	public int price;
+	public boolean safe;
 	public String description;
 	public boolean moveOnly;
 	public ASStruc[] data;
 	public boolean norotate;
 
 	Pets(int id, ItemStack item, String name, String description, int price,boolean norotate, boolean moveOnly,boolean safe, ASStruc... data){
+		this.safe = safe;
 		this.norotate=norotate;
 		this.description= description;
 		this.id = id;

@@ -43,11 +43,7 @@ public class Base implements Listener {
 			if(Utils.playerCache.get(p.getUniqueId()) != null){
 				CosmeticPlayer cosp = Utils.playerCache.get(p.getUniqueId());
 				if(cosp.hasPet()){
-					CurrentPet pete = cosp.pet;
-					pete.origin.remove();
-					for(ASData asd : pete.armor_stands){
-						asd.ent.remove();
-					}
+					PetsUtils.removePet(cosp);
 				}
 			}
 		}
@@ -78,12 +74,7 @@ public class Base implements Listener {
 		if(cp!=null){
 			if(cp.hasPet()){
 
-				CurrentPet cPet = cp.pet;
-				cp.pet = null;
-				cPet.origin.remove();
-				for(ASData asd : cPet.armor_stands){
-					asd.ent.remove();
-				}
+				PetsUtils.removePet(cp);
 			}
 			if(cp.hasParticle()){
 				cp.particle = null;
