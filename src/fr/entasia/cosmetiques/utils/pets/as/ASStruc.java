@@ -4,6 +4,8 @@ import fr.entasia.cosmetiques.Main;
 import fr.entasia.cosmetiques.utils.pets.CurrentPet;
 import fr.entasia.cosmetiques.utils.pets.PetsUtils;
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
@@ -32,7 +34,7 @@ public class ASStruc {
 	}
 
 
-	public void update(CurrentPet cpet, ASData data){
+	public void update(CurrentPet cpet, ASData data, Player p){
 		// ANIMATION - 1 : Frame checking
 		ASFrame frame;
 		if(framerate!=0){
@@ -70,7 +72,19 @@ public class ASStruc {
 
 		Location a = cpet.origin.getLocation().add(vector);
 		a.setYaw(a.getYaw()+frame.locrotation);
-		data.ent.teleport(a);
+		new BukkitRunnable(){
+			@Override
+			public void run() {
+				data.ent.teleport(a);
+				if(cpet.origin.getWorld() != data.ent.getWorld()){
+					Main.multiversion.setPathGoal(cpet.origin, p);
+				}
+				cancel();
+			}
+		}.runTask(Main.main);
+
+
+
 	}
 
 }

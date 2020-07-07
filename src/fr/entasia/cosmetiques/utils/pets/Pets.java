@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -138,9 +139,9 @@ public enum Pets {
 	PET_SOLAR_SYSTEM(212, PetsUtils.getSkull(new ItemStack(Material.SKULL_ITEM, 1,(short)3),"pet:sun", "c11234820a1e7bfb912b522aecf34bfcb569f02bf5836e669a29bae99737e522"), "§7Système solaire","§7Pour une fois , vous êtes le centre du système solaire !",1000,true,false,false,
 			new ASStruc(){
 				@Override
-				public void update(CurrentPet cpet, ASData data) {
+				public void update(CurrentPet cpet, ASData data, Player p) {
 					data.ent.getWorld().spawnParticle(Particle.FLAME, data.ent.getLocation().add(0, 1.3, 0), 4, 0.15, 0.1, 0.15, 0.1);
-					super.update(cpet, data);
+					super.update(cpet, data,p);
 				}
 			}.setFrameRate(0).setFrames(
 					new ASFrame().setHeadPos(0,0,0).setLocation(0,1,0).setHead(new ItemStack(Material.SKULL_ITEM, 1,(short)3),"pet:sun", "c11234820a1e7bfb912b522aecf34bfcb569f02bf5836e669a29bae99737e522")

@@ -1,6 +1,6 @@
 package fr.entasia.cosmetiques.utils.pets.as;
 
-import fr.entasia.apis.ItemUtils;
+import fr.entasia.apis.utils.ItemUtils;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.util.EulerAngle;

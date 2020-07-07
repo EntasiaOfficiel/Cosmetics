@@ -10,10 +10,12 @@ import fr.entasia.cosmetiques.utils.pets.PetsUtils;
 import fr.entasia.cosmetiques.utils.pets.as.ASData;
 import fr.entasia.cosmetiques.utils.pets.as.ASFrame;
 import fr.entasia.cosmetiques.utils.pets.as.ASStruc;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.util.Vector;
 
 public class RecurrentTask extends BukkitRunnable {
@@ -49,14 +51,23 @@ public class RecurrentTask extends BukkitRunnable {
 				Player p = cp.p;
 
 				if (!p.getWorld().getName().equalsIgnoreCase(pet.origin.getWorld().getName())) {
-					pet.origin.teleport(p.getLocation());
+					new BukkitRunnable(){
+						@Override
+						public void run() {
+							pet.origin.teleport(p.getLocation());
+							Main.multiversion.setPathGoal(pet.origin, p);
+							cancel();
+						}
+					}.runTask(Main.main);
+
+
 				}else if(pet.origin.getLocation().distance(p.getLocation()) > 20 && !p.isFlying() && !p.isGliding() && !isTooHigh(p)){
 					pet.origin.teleport(p.getLocation());
 				}
 
 
 				for(ASData asd : pet.armor_stands){
-					asd.struct.update(pet,asd);
+					asd.struct.update(pet,asd,p);
 				}
 			}
 
