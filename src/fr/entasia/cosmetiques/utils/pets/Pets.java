@@ -1,16 +1,19 @@
 package fr.entasia.cosmetiques.utils.pets;
 
+import fr.entasia.cosmetiques.utils.pets.as.ASData;
 import fr.entasia.cosmetiques.utils.pets.as.ASFrame;
 import fr.entasia.cosmetiques.utils.pets.as.ASStruc;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public enum Pets {
 
 	PET_DOG(202, PetsUtils.getSkull(new ItemStack(Material.SKULL_ITEM, 1, (short)3),
-			"pet:dog", "66381e813ef32aaaabcfe2a84f913a65691bb32b7d82dc2222dd58a5534c"), "§7Chien","§7Le meilleur amis de l'homme, aussi sur Entasia",  1000,false,
+			"pet:dog", "66381e813ef32aaaabcfe2a84f913a65691bb32b7d82dc2222dd58a5534c"), "§7Chien","§7Le meilleur amis de l'homme, aussi sur Entasia",  1000,false,false,true,
 			new ASStruc().setFrameRate(0).setFrames(
 					new ASFrame().setLocation(0, -1.4, -0.1).setHead(new ItemStack(Material.SKULL_ITEM,1, (short) 3),
 							"pet:dog", "66381e813ef32aaaabcfe2a84f913a65691bb32b7d82dc2222dd58a5534c").setHeadPos(0, 0, 0)
@@ -18,7 +21,7 @@ public enum Pets {
 	),
 
 	PET_BEE(203, PetsUtils.getSkull(new ItemStack(Material.SKULL_ITEM, 1, (short)3),
-			"pet:bee", "9394d758e04b4323e6e7ef3489fe4d0078c2efba8851c03a7deb6d4182c7ea3a"), "§7Abeille Robot","§7Une abeille terminator... Maintenant vous saurez qu'il faut se méfier",  1000,false,
+			"pet:bee", "9394d758e04b4323e6e7ef3489fe4d0078c2efba8851c03a7deb6d4182c7ea3a"), "§7Abeille Robot","§7Une abeille terminator... Maintenant vous saurez qu'il faut se méfier",  1000,false,false,true,
 			new ASStruc().setFrameRate(0).setFrames(
 					new ASFrame().setLocation(0, -0.3, 0).setHead(new ItemStack(Material.SKULL_ITEM,1, (short) 3),
 							"pet:bee", "9394d758e04b4323e6e7ef3489fe4d0078c2efba8851c03a7deb6d4182c7ea3a").setHeadPos(0, 0, 0)
@@ -26,7 +29,7 @@ public enum Pets {
 	),
 
 	PET_ARIES(204, PetsUtils.getSkull(new ItemStack(Material.SKULL_ITEM, 1, (short)3),
-			"pet:aries", "ec7864b99c63edc4d0d34a8eb6591742a8db6dafabe12b168554a368f97687cb"), "§7Bélier","§7Si c'est pas mignon ça ",  1000,false,
+			"pet:aries", "ec7864b99c63edc4d0d34a8eb6591742a8db6dafabe12b168554a368f97687cb"), "§7Bélier","§7Si c'est pas mignon ça ",  1000,false,false,true,
 			new ASStruc().setFrameRate(0).setFrames(
 					new ASFrame().setLocation(0, -1.4, -0.1).setHead(new ItemStack(Material.SKULL_ITEM,1, (short) 3),
 							"pet:aries", "ec7864b99c63edc4d0d34a8eb6591742a8db6dafabe12b168554a368f97687cb").setHeadPos(0, 0, 0)
@@ -34,7 +37,7 @@ public enum Pets {
 	),
 
 	PET_EARTH(205, PetsUtils.getSkull(new ItemStack(Material.SKULL_ITEM, 1, (short)3),
-			"pet:earth", "2e2cc42015e6678f8fd49ccc01fbf787f1ba2c32bcf559a015332fc5db50"), "§7Terre","§7Alors là, c'est le pied , la Terre te suis , c'est fou",  1000,false,
+			"pet:earth", "2e2cc42015e6678f8fd49ccc01fbf787f1ba2c32bcf559a015332fc5db50"), "§7Terre","§7Alors là, c'est le pied , la Terre te suis , c'est fou",  1000,false,false,true,
 			new ASStruc().setFrameRate(7).setFrames(
 					new ASFrame().setLocation(0, -0.3, 0).setHead(new ItemStack(Material.SKULL_ITEM,1, (short) 3), "pet:earth", "2e2cc42015e6678f8fd49ccc01fbf787f1ba2c32bcf559a015332fc5db50").setHeadPos(0, 0, 0),
 					new ASFrame().setHeadPos(0, 22.5, 0),
@@ -44,7 +47,7 @@ public enum Pets {
 	),
 
 	PET_PANDA(206, PetsUtils.getSkull(new ItemStack(Material.SKULL_ITEM, 1, (short)3),
-			"pet:panda_menu", "d8cdd4f285632c25d762ece25f4193b966c2641b15d9bdbc0a113023de76ab"), "§7Panda","§7Roule, roule petit panda",  1000,true,
+			"pet:panda_menu", "d8cdd4f285632c25d762ece25f4193b966c2641b15d9bdbc0a113023de76ab"), "§7Panda","§7Roule, roule petit panda",  1000,false,true,true,
 			new ASStruc().setFrameRate(3).setFrames(
 					new ASFrame().setLocation(0, -1.1, -0.1).setHead(new ItemStack(Material.SKULL_ITEM,1, (short) 3), "pet:panda", "10f982d56a173a4392a9b791cb29b88f1cde6f7b25e2f5dc5325706257da3e3a").setHeadPos(0, 0, 90),
 					new ASFrame().setHeadPos(0, 337.5, 90),
@@ -66,7 +69,7 @@ public enum Pets {
 	),
 
 	PET_COCHON_MINECART(207, PetsUtils.getSkull(new ItemStack(Material.SKULL_ITEM, 1, (short)3),
-			"pet:cochon_mc", "369551dcc663c5db7c099ff9640b73e26d8f7c63ad5676b41d2614c2d380ce15"), "§7Cochon dans un wagon","§7Oh tien , un Poporc sauvage !", 1000,false,
+			"pet:cochon_mc", "369551dcc663c5db7c099ff9640b73e26d8f7c63ad5676b41d2614c2d380ce15"), "§7Cochon dans un wagon","§7Oh tien , un Poporc sauvage !", 1000,false,false,true,
 			new ASStruc().setFrameRate(0).setFrames(
 					new ASFrame().setLocation(0, -1.4, -0.1).setHead(new ItemStack(Material.SKULL_ITEM,1, (short) 3),
 							"pet:cochon_minecart","369551dcc663c5db7c099ff9640b73e26d8f7c63ad5676b41d2614c2d380ce15").setHeadPos(0, 0, 0)
@@ -74,7 +77,7 @@ public enum Pets {
 	),
 
 	PET_RENARD(208, PetsUtils.getSkull(new ItemStack(Material.SKULL_ITEM, 1, (short)3),
-			"pet:renard","fbdffe9642fc5280e68ce488e3bcf440687ed3bc566e315af824f428b6ff715"), "§7Renard","§7Rox et Rouky , amis pour la vie",  1000,false,
+			"pet:renard","fbdffe9642fc5280e68ce488e3bcf440687ed3bc566e315af824f428b6ff715"), "§7Renard","§7Rox et Rouky , amis pour la vie",  1000,false,false,true,
 			new ASStruc().setFrameRate(0).setFrames(
 					new ASFrame().setLocation(0, -1.4, -0.1).setHead(new ItemStack(Material.SKULL_ITEM,1, (short) 3),
 							"pet:renard","fbdffe9642fc5280e68ce488e3bcf440687ed3bc566e315af824f428b6ff715").setHeadPos(0, 0, 0)
@@ -82,7 +85,7 @@ public enum Pets {
 	),
 
 	PET_LAPIN(208, PetsUtils.getSkull(new ItemStack(Material.SKULL_ITEM, 1, (short)3),
-			"pet:lapin","17ab6eb88246489f4245e15e2035f23476d058e1ea308276387316aabcc52ed"), "§7Lapin","§7Malheuresement ça ne vous aidera pas à sauter plus haut",  1000,false,
+			"pet:lapin","17ab6eb88246489f4245e15e2035f23476d058e1ea308276387316aabcc52ed"), "§7Lapin","§7Malheuresement ça ne vous aidera pas à sauter plus haut",  1000,false,false,true,
 			new ASStruc().setFrameRate(0).setFrames(
 					new ASFrame().setLocation(0, -1.4, -0.1).setHead(new ItemStack(Material.SKULL_ITEM,1, (short) 3),
 							"pet:lapin","17ab6eb88246489f4245e15e2035f23476d058e1ea308276387316aabcc52ed").setHeadPos(0, 0, 0)
@@ -90,7 +93,7 @@ public enum Pets {
 	),
 
 	PET_SLIME(209, PetsUtils.getSkull(new ItemStack(Material.SKULL_ITEM, 1, (short)3),
-			"pet:slime","5accc1b1d40d70d8bf6f2136b86edd9d1595e3a07fa2ea97b73f9bc5e90ae3b5"), "§7Slime multicolore","§7J'aime les slimes , pas vous ?", 1000,false,
+			"pet:slime","5accc1b1d40d70d8bf6f2136b86edd9d1595e3a07fa2ea97b73f9bc5e90ae3b5"), "§7Slime multicolore","§7J'aime les slimes , pas vous ?", 1000,false,false,true,
 			new ASStruc().setFrameRate(0).setFrames(
 					new ASFrame().setLocation(0, -1.4, 0).setHead(new ItemStack(Material.SKULL_ITEM,1, (short) 3),
 							"pet:slime","5accc1b1d40d70d8bf6f2136b86edd9d1595e3a07fa2ea97b73f9bc5e90ae3b5").setHeadPos(0, 0, 0),
@@ -104,7 +107,7 @@ public enum Pets {
 			)
 	),
 
-	PET_PINGUIN(210, PetsUtils.getSkull(new ItemStack(Material.SKULL_ITEM, 1, (short)3), "pet:pinguin", "d3c57facbb3a4db7fd55b5c0dc7d19c19cb0813c748ccc9710c714727551f5b9"), "§7Pinguin","§7Qui n'a jamais rêvé d'avoir un petit pinguin qui se dandine ?", 1000,true,
+	PET_PINGUIN(210, PetsUtils.getSkull(new ItemStack(Material.SKULL_ITEM, 1, (short)3), "pet:pinguin", "d3c57facbb3a4db7fd55b5c0dc7d19c19cb0813c748ccc9710c714727551f5b9"), "§7Pinguin","§7Qui n'a jamais rêvé d'avoir un petit pinguin qui se dandine ?", 1000,false,true,true,
 			new ASStruc().setFrameRate(6).setSmall().setFrames(
 					new ASFrame().setHeadPos(0,0,0).setLocation(0, -0.4, -0.1).setHead(new ItemStack(Material.SKULL_ITEM,1, (short) 3), "pet:pinguin_body", "acea5e6a750c3ce1aa6c1419781f4f6971905d056e46cbe8797e70a528c0e08d"),
 					new ASFrame().setHeadPos(0, 0, 5),
@@ -113,13 +116,13 @@ public enum Pets {
 
 
 			),
-			new ASStruc().setFrameRate(1).setSmall().setFrames(
-					new ASFrame().setLocation(0, 0.02, -0.1).setHead(new ItemStack(Material.SKULL_ITEM,1, (short) 3), "pet:pinguin_head", "d3c57facbb3a4db7fd55b5c0dc7d19c19cb0813c748ccc9710c714727551f5b9").setHeadPos(0, 0, 0)
+			new ASStruc().setFrameRate(0).setSmall().setFrames(
+					new ASFrame().setLocation(0, 0.02, -0.1).setHead(new ItemStack(Material.SKULL_ITEM,1, (short) 3), "pet:pinguin_head", "654121131bb69578ee2a7e5ca115f49b6b071a68ef0cfee9b027058e77fa4351").setHeadPos(0, 0, 0)
 
 			)
 	),
 
-	PET_BB8(211, PetsUtils.getSkull(new ItemStack(Material.SKULL_ITEM, 1, (short)3), "pet:bb8", "42d271f82674916dcb47b372a572f61e7472fe063b2c9246aeeb7c57a8835"), "§7BB8","§7Vient BB8 , on va botter les fesses de Snoke !", 1000,true,
+	PET_BB8(211, PetsUtils.getSkull(new ItemStack(Material.SKULL_ITEM, 1, (short)3), "pet:bb8", "42d271f82674916dcb47b372a572f61e7472fe063b2c9246aeeb7c57a8835"), "§7BB8","§7Vient BB8 , on va botter les fesses de Snoke !", 1000,false,true,true,
 			new ASStruc().setFrameRate(4).setFrames(
 					new ASFrame().setHeadPos(0, 0, 270).setLocation(0.29, -1.1, -0.1).setHead(new ItemStack(Material.SKULL_ITEM,1, (short) 3), "pet:bb8_body", "c856981ccec8a492898e0cb4d9443d21459d5b65dfa8da462d17697a178f8e"),
 					new ASFrame().setHeadPos(0, 22.5, 270),
@@ -132,8 +135,14 @@ public enum Pets {
 			)
 	),
 
-	PET_SOLAR_SYSTEM(212, PetsUtils.getSkull(new ItemStack(Material.SKULL_ITEM, 1,(short)3),"pet:sun", "c11234820a1e7bfb912b522aecf34bfcb569f02bf5836e669a29bae99737e522"), "§7Système solaire","§7Pour une fois , vous êtes le centre du système solaire !",1000,false,
-			new ASStruc().setFrameRate(0).setFrames(
+	PET_SOLAR_SYSTEM(212, PetsUtils.getSkull(new ItemStack(Material.SKULL_ITEM, 1,(short)3),"pet:sun", "c11234820a1e7bfb912b522aecf34bfcb569f02bf5836e669a29bae99737e522"), "§7Système solaire","§7Pour une fois , vous êtes le centre du système solaire !",1000,true,false,false,
+			new ASStruc(){
+				@Override
+				public void update(CurrentPet cpet, ASData data) {
+					data.ent.getWorld().spawnParticle(Particle.FLAME, data.ent.getLocation().add(0, 1.3, 0), 4, 0.15, 0.1, 0.15, 0.1);
+					super.update(cpet, data);
+				}
+			}.setFrameRate(0).setFrames(
 					new ASFrame().setHeadPos(0,0,0).setLocation(0,1,0).setHead(new ItemStack(Material.SKULL_ITEM, 1,(short)3),"pet:sun", "c11234820a1e7bfb912b522aecf34bfcb569f02bf5836e669a29bae99737e522")
 
 			),
@@ -223,13 +232,8 @@ public enum Pets {
 					new ASFrame().setLocation(1.77,1,-1.77),
 					new ASFrame().setLocation(2.5,1,0),
 					new ASFrame().setLocation(1.77,1,1.77)
-
-
 			)
-
 	);
-
-
 
 
 
@@ -240,14 +244,15 @@ public enum Pets {
 	public String description;
 	public boolean moveOnly;
 	public ASStruc[] data;
+	public boolean norotate;
 
-	Pets(int id, ItemStack item, String name, String description, int price, boolean moveOnly,ASStruc... data){
+	Pets(int id, ItemStack item, String name, String description, int price,boolean norotate, boolean moveOnly,boolean safe, ASStruc... data){
+		this.norotate=norotate;
 		this.description= description;
 		this.id = id;
 		this.itemStack = item;
 		this.name = name;
 		ItemMeta meta = itemStack.getItemMeta();
-		// TODO Pour la texture de la tête
 		itemStack.setItemMeta(meta);
 		this.price = price;
 		this.moveOnly = moveOnly;

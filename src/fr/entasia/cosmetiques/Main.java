@@ -1,9 +1,8 @@
 package fr.entasia.cosmetiques;
 
-import fr.entasia.apis.ServerUtils;
+
 import fr.entasia.apis.sql.SQLConnection;
-import fr.entasia.cosmetiques.commands.Test2Cmd;
-import fr.entasia.cosmetiques.commands.TestCmd;
+import fr.entasia.apis.utils.ServerUtils;
 import fr.entasia.cosmetiques.listeners.Base;
 import fr.entasia.cosmetiques.utils.CosmeticPlayer;
 import fr.entasia.cosmetiques.utils.Utils;
@@ -24,17 +23,16 @@ public class Main extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		try{
+
 			sql = new SQLConnection("cosmetiques","global");
 			main = this;
 			getLogger().info("Activation du plugin...");
 
-			Class<?> cl = Class.forName("fr.entasia.cosmetiques.versions."+ServerUtils.version);
+			Class<?> cl = Class.forName("fr.entasia.cosmetiques.versions."+ ServerUtils.version);
 			multiversion = (MultiVersions) cl.newInstance();
 
 			new RecurrentTask().runTaskTimerAsynchronously(this, 0, 1);
 
-		    getCommand("test").setExecutor(new TestCmd());
-		    getCommand("test2").setExecutor(new Test2Cmd());
 	        Bukkit.getServer().getPluginManager().registerEvents(new Base(), this);
 
 

@@ -14,7 +14,8 @@ public class CurrentPet {
 	public Chicken origin;
 	public Location lastloc;
 
-	public CurrentPet(Pets type){
+
+    public CurrentPet(Pets type){
 		this.type = type;
 	}
 }

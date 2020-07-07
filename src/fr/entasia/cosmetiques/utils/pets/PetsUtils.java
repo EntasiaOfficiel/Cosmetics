@@ -1,8 +1,8 @@
 package fr.entasia.cosmetiques.utils.pets;
 
-import fr.entasia.apis.ItemUtils;
 import fr.entasia.apis.nbt.EntityNBT;
 import fr.entasia.apis.nbt.NBTComponent;
+import fr.entasia.apis.utils.ItemUtils;
 import fr.entasia.cosmetiques.Main;
 import fr.entasia.cosmetiques.utils.CosmeticPlayer;
 import fr.entasia.cosmetiques.utils.Utils;
@@ -21,6 +21,11 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 public class PetsUtils {
+
+	public static double angle(double a){
+		if(a>0)return a;
+		else return 180+a+180;
+	}
 
 	public static ItemStack getSkull(ItemStack item, String uuidstr, String texture){
 		SkullMeta smeta = (SkullMeta)item.getItemMeta();

@@ -1,9 +1,9 @@
 package fr.entasia.cosmetiques.utils;
 
-import fr.entasia.apis.MoneyUtils;
 import fr.entasia.apis.menus.MenuClickEvent;
 import fr.entasia.apis.menus.MenuCreator;
 import fr.entasia.apis.sql.SQLConnection;
+import fr.entasia.apis.utils.MoneyUtils;
 import fr.entasia.cosmetiques.Main;
 import fr.entasia.cosmetiques.utils.particles.Particles;
 import fr.entasia.cosmetiques.utils.pets.CurrentPet;
@@ -13,6 +13,7 @@ import fr.entasia.cosmetiques.utils.pets.as.ASData;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -123,15 +124,20 @@ public class InvsManager {
 			ItemStack item = c.itemStack.clone();
 			ItemMeta meta = item.getItemMeta();
 			ArrayList<String> lore = new ArrayList<>(Collections.singletonList(c.description));
+			CosmeticPlayer cp = CosmeticPlayer.getCosPlay(p);
 
-			if(!Utils.haveCosm(c.id,p.getUniqueId(), false)){
-				lore.add("§cVous n'avez pas encore débloqué cette particule");
-			}else{
-
+			if(cp.particle!=null && cp.particle.equals(c)){
+				lore.add("§6Cette particule est déjà activée");
+				meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+				meta.addEnchant(Enchantment.LURE, 1, false);
+			}else if(Utils.haveCosm(c.id,p.getUniqueId(), false)){
 				lore.add("§aVous possédez cette particule");
 				meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 				meta.addEnchant(Enchantment.LURE, 1, false);
+			} else{
+				lore.add("§cVous n'avez pas encore débloqué cette particule");
 			}
+
 			if(item.getType().equals(Material.POTION)){
 				meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
 			}
@@ -205,13 +211,19 @@ public class InvsManager {
 			ItemStack item = c.itemStack.clone();
 			ItemMeta meta = item.getItemMeta();
 			ArrayList<String> lore = new ArrayList<>(Collections.singletonList(c.description));
+			CosmeticPlayer cp = CosmeticPlayer.getCosPlay(p);
 
-			if(!Utils.haveCosm(c.id,p.getUniqueId(), true)){
-				lore.add("§cVous n'avez pas encore débloqué ce Pet");
-			}else{
+
+			if(cp.pet!=null && cp.pet.type.equals(c)){
+				lore.add("§6Ce pet est déjà activé");
 				meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 				meta.addEnchant(Enchantment.LURE, 1, false);
+			}else if(Utils.haveCosm(c.id,p.getUniqueId(), true)){
 				lore.add("§aVous possédez ce Pet");
+				meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+				meta.addEnchant(Enchantment.LURE, 1, false);
+			} else{
+				lore.add("§cVous n'avez pas encore débloqué ce Pet");
 			}
 			if(item.equals(new ItemStack(Material.POTION))){
 				meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
