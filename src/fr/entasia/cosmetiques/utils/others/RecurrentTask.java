@@ -2,21 +2,16 @@ package fr.entasia.cosmetiques.utils.others;
 
 import fr.entasia.cosmetiques.Main;
 import fr.entasia.cosmetiques.utils.CosmeticPlayer;
-import fr.entasia.cosmetiques.utils.Utils;
+import fr.entasia.cosmetiques.utils.CosmAPI;
+import fr.entasia.cosmetiques.utils.particles.Particle;
 import fr.entasia.cosmetiques.utils.particles.ParticleStruct;
-import fr.entasia.cosmetiques.utils.particles.Particles;
+import fr.entasia.cosmetiques.utils.particles.ParticleUtils;
 import fr.entasia.cosmetiques.utils.pets.CurrentPet;
-import fr.entasia.cosmetiques.utils.pets.PetsUtils;
 import fr.entasia.cosmetiques.utils.pets.as.ASData;
-import fr.entasia.cosmetiques.utils.pets.as.ASFrame;
-import fr.entasia.cosmetiques.utils.pets.as.ASStruc;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitScheduler;
-import org.bukkit.util.Vector;
 
 public class RecurrentTask extends BukkitRunnable {
 
@@ -34,7 +29,7 @@ public class RecurrentTask extends BukkitRunnable {
 
 	@Override
 	public void run() {
-		for (Particles p : Particles.values()) {
+		for (Particle p : CosmAPI.particleList) {
 			if(p.structs==null)continue;
 			for (ParticleStruct ps : p.structs) {
 				if(ps.framerate>1){
@@ -44,7 +39,7 @@ public class RecurrentTask extends BukkitRunnable {
 			}
 		}
 
-		for (CosmeticPlayer cp: Utils.playerCache.values()) {
+		for (CosmeticPlayer cp: CosmAPI.playerCache.values()) {
 			if(cp.hasPet()) {
 				//déplacer le pet
 				CurrentPet pet = cp.pet;

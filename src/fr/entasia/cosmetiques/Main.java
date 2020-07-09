@@ -5,9 +5,11 @@ import fr.entasia.apis.sql.SQLConnection;
 import fr.entasia.apis.utils.ServerUtils;
 import fr.entasia.cosmetiques.listeners.Base;
 import fr.entasia.cosmetiques.utils.CosmeticPlayer;
-import fr.entasia.cosmetiques.utils.Utils;
+import fr.entasia.cosmetiques.utils.CosmAPI;
 import fr.entasia.cosmetiques.utils.others.RecurrentTask;
+import fr.entasia.cosmetiques.utils.particles.ParticleUtils;
 import fr.entasia.cosmetiques.utils.pets.CurrentPet;
+import fr.entasia.cosmetiques.utils.pets.PetsUtils;
 import fr.entasia.cosmetiques.utils.pets.as.ASData;
 import fr.entasia.cosmetiques.versions.MultiVersions;
 import org.bukkit.Bukkit;
@@ -27,7 +29,8 @@ public class Main extends JavaPlugin {
 			sql = new SQLConnection("cosmetiques","global");
 			main = this;
 			getLogger().info("Activation du plugin...");
-
+			ParticleUtils.registerAllParticle();
+			PetsUtils.registerAllPet();
 			Class<?> cl = Class.forName("fr.entasia.cosmetiques.versions."+ ServerUtils.version);
 			multiversion = (MultiVersions) cl.newInstance();
 
@@ -47,12 +50,15 @@ public class Main extends JavaPlugin {
 			getLogger().severe("UNE ERREUR EST SURVENUE ! ARRET DU SERVEUR");
 			getServer().shutdown();
 		}
+
+
+
 	}
 
 	@Override
 	public void onDisable(){
 		//Faire despawn les pets de tous les joueurs
-		for (CosmeticPlayer cp: Utils.playerCache.values()) {
+		for (CosmeticPlayer cp: CosmAPI.playerCache.values()) {
 			if(cp.hasPet()){
 				CurrentPet pet = cp.pet;
 				pet.origin.remove();

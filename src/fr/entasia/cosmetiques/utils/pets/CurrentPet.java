@@ -9,13 +9,13 @@ import java.util.ArrayList;
 public class CurrentPet {
 
 
-	public Pets type;
+	public Pet type;
 	public ArrayList<ASData> armor_stands = new ArrayList<>();
 	public Chicken origin;
 	public Location lastloc;
 
 
-    public CurrentPet(Pets type){
+    public CurrentPet(Pet type){
 		this.type = type;
 	}
 }

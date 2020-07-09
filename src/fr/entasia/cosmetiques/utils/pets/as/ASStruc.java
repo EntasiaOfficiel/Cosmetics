@@ -62,7 +62,7 @@ public class ASStruc {
 		// ROTATION - 2 : Si la frame ne contient pas de position on se base sur la position de la dernière frame, enregistrée dans asd.lastrloc
 		if(frame.rloc==null){
 			if(data.lastrloc==null){
-				Main.main.getLogger().severe("Pet non valide : "+cpet.type.name()+" : Pas de location pour la première frame !");
+				Main.main.getLogger().severe("Pet non valide : "+cpet.type.name+" : Pas de location pour la première frame !");
 				return;
 			}else if(!cpet.type.norotate) vector = PetsUtils.rotate(data.lastrloc, anglePoulet);
 		}else{

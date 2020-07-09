@@ -2,28 +2,21 @@ package fr.entasia.cosmetiques.utils;
 
 import fr.entasia.apis.menus.MenuClickEvent;
 import fr.entasia.apis.menus.MenuCreator;
-import fr.entasia.apis.sql.SQLConnection;
 import fr.entasia.apis.utils.MoneyUtils;
-import fr.entasia.cosmetiques.Main;
-import fr.entasia.cosmetiques.utils.particles.Particles;
+import fr.entasia.cosmetiques.utils.particles.Particle;
 import fr.entasia.cosmetiques.utils.pets.CurrentPet;
-import fr.entasia.cosmetiques.utils.pets.Pets;
+import fr.entasia.cosmetiques.utils.pets.Pet;
 import fr.entasia.cosmetiques.utils.pets.PetsUtils;
 import fr.entasia.cosmetiques.utils.pets.as.ASData;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.SkullMeta;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.*;
 
 public class InvsManager {
@@ -79,9 +72,9 @@ public class InvsManager {
 	public static MenuCreator particleMenu = new MenuCreator(){
 		@Override
 		public void onMenuClick(MenuClickEvent e){
-			for(Particles c : Particles.values()){
+			for(Particle c : CosmAPI.particleList){
 				if(c.itemStack.getItemMeta().getDisplayName().equals(e.item.getItemMeta().getDisplayName())){
-					if(Utils.haveCosm(c.id,e.player.getUniqueId(), false)){
+					if(CosmAPI.haveCosm(c.id,e.player.getUniqueId(), false)){
 						e.player.sendMessage("§7Vous avez activé la particule "+c.nom);
 						CosmeticPlayer.getCosPlay(e.player).particle = c;
 						e.player.closeInventory();
@@ -109,10 +102,7 @@ public class InvsManager {
 
 	public static void particleMenuOpen(Player p){
 
-		int cosm = 0;
-		for(Particles c : Particles.values()){
-			cosm++;
-		}
+		int cosm = CosmAPI.particleList.size();
 		int slot = cosm*2;
 		while( slot%9!=0){
 			slot++;
@@ -120,7 +110,7 @@ public class InvsManager {
 
 		Inventory inv = particleMenu.createInv(slot/9, "§7Menu des particules");
 		int nextSlot = 1;
-		for(Particles c : Particles.values()){
+		for(Particle c : CosmAPI.particleList){
 			ItemStack item = c.itemStack.clone();
 			ItemMeta meta = item.getItemMeta();
 			ArrayList<String> lore = new ArrayList<>(Collections.singletonList(c.description));
@@ -130,7 +120,7 @@ public class InvsManager {
 				lore.add("§6Cette particule est déjà activée");
 				meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 				meta.addEnchant(Enchantment.LURE, 1, false);
-			}else if(Utils.haveCosm(c.id,p.getUniqueId(), false)){
+			}else if(CosmAPI.haveCosm(c.id,p.getUniqueId(), false)){
 				lore.add("§aVous possédez cette particule");
 				meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 				meta.addEnchant(Enchantment.LURE, 1, false);
@@ -160,9 +150,9 @@ public class InvsManager {
 	public static MenuCreator petMenu = new MenuCreator(){
 		@Override
 		public void onMenuClick(MenuClickEvent e){
-			for(Pets c : Pets.values()){
+			for(Pet c : CosmAPI.petList){
 				if(c.name.equalsIgnoreCase(e.item.getItemMeta().getDisplayName())){
-					if(Utils.haveCosm(c.id,e.player.getUniqueId(), true)){
+					if(CosmAPI.haveCosm(c.id,e.player.getUniqueId(), true)){
 						e.player.sendMessage("§7Vous avez activé le pet "+c.name);
 						PetsUtils.spawnPet(e.player, c);
 						e.player.closeInventory();
@@ -196,7 +186,7 @@ public class InvsManager {
 	public static void petMenuOpen(Player p){
 
 		int pets = 0;
-		for(Pets pet : Pets.values()){
+		for(Pet pet : CosmAPI.petList){
 			pets++;
 		}
 		int slot = pets*2;
@@ -206,7 +196,7 @@ public class InvsManager {
 
 		Inventory inv = petMenu.createInv(slot/9, "§7Menu des Pets");
 		int nextSlot = 1;
-		for(Pets c : Pets.values()){
+		for(Pet c : CosmAPI.petList){
 
 			ItemStack item = c.itemStack.clone();
 			ItemMeta meta = item.getItemMeta();
@@ -218,7 +208,7 @@ public class InvsManager {
 				lore.add("§6Ce pet est déjà activé");
 				meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 				meta.addEnchant(Enchantment.LURE, 1, false);
-			}else if(Utils.haveCosm(c.id,p.getUniqueId(), true)){
+			}else if(CosmAPI.haveCosm(c.id,p.getUniqueId(), true)){
 				lore.add("§aVous possédez ce Pet");
 				meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 				meta.addEnchant(Enchantment.LURE, 1, false);
@@ -262,21 +252,12 @@ public class InvsManager {
 				return;
 			}
 			UUID uuid = e.player.getUniqueId();
-			Particles c = (Particles)e.data;
+			Particle c = (Particle)e.data;
 			if(MoneyUtils.getMoney(uuid)>= c.price){
 				MoneyUtils.removeMoney(uuid, c.price);
 				e.player.sendMessage("§2Vous avez acheté la particule "+c.nom);
 				e.player.closeInventory();
-				Main.sql.checkConnect();
-				PreparedStatement ps;
-				try {
-					ps = Main.sql.connection.prepareStatement("INSERT INTO particles(uuid,id) VALUES (?,?)");
-					ps.setInt(2, c.id);
-					ps.setString(1, e.player.getUniqueId().toString());
-					ps.execute();
-				} catch (SQLException ex) {
-					ex.printStackTrace();
-				}
+				CosmAPI.unlockParticle(c.id,e.player.getUniqueId());
 			} else {
 				e.player.sendMessage("§4Vous n'avez pas assez d'argent pour acheter cette particule");
 				e.player.closeInventory();
@@ -285,7 +266,7 @@ public class InvsManager {
 		}
 	};
 
-	public static void openParticleBuyMenu(Player p, Particles c){
+	public static void openParticleBuyMenu(Player p, Particle c){
 		Inventory inv = buyParticleMenu.createInv(2,"§7Achat d'une particule", c);
 
 		ItemStack cosmetique=c.itemStack;
@@ -315,21 +296,12 @@ public class InvsManager {
 		public void onMenuClick(MenuClickEvent e){
 			if(e.item.getItemMeta().getDisplayName().equalsIgnoreCase("§cAnnuler")) e.player.closeInventory();
 			UUID uuid = e.player.getUniqueId();
-			Pets c = (Pets)e.data;
+			Pet c = (Pet)e.data;
 			if(MoneyUtils.getMoney(uuid)>= c.price){
 				MoneyUtils.removeMoney(uuid, c.price);
 				e.player.sendMessage("§2Vous avez acheté le pet "+c.name);
 				e.player.closeInventory();
-				Main.sql.checkConnect();
-				PreparedStatement ps;
-				try {
-					ps = Main.sql.connection.prepareStatement("INSERT INTO pets(uuid,id) VALUES (?,?)");
-					ps.setInt(2, c.id);
-					ps.setString(1, e.player.getUniqueId().toString());
-					ps.execute();
-				} catch (SQLException ex) {
-					ex.printStackTrace();
-				}
+				CosmAPI.unlockPet(c.id,e.player.getUniqueId());
 			} else {
 				e.player.sendMessage("§4Vous n'avez pas assez d'argent pour acheter ce Pet");
 				e.player.closeInventory();
@@ -338,7 +310,7 @@ public class InvsManager {
 		}
 	};
 
-	public static void openPetBuyMenu(Player p, Pets c){
+	public static void openPetBuyMenu(Player p, Pet c){
 		Inventory inv = buyPetMenu.createInv(2,"§7Achat d'un Pet", c);
 
 		ItemStack cosmetique=c.itemStack;
