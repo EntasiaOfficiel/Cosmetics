@@ -84,7 +84,6 @@ public class ASStruc {
 		}.runTask(Main.main);
 
 
-
 	}
 
 }
