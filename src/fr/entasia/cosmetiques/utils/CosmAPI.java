@@ -3,6 +3,7 @@ package fr.entasia.cosmetiques.utils;
 import fr.entasia.cosmetiques.Main;
 import fr.entasia.cosmetiques.utils.particles.Particle;
 import fr.entasia.cosmetiques.utils.pets.Pet;
+import org.bukkit.entity.Player;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -73,5 +74,9 @@ public class CosmAPI {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
+	}
+
+	public static void openCosmMenu(Player p){
+		InvsManager.cosmMenuOpen(p);
 	}
 }

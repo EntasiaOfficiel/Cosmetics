@@ -44,6 +44,7 @@ public class InvsManager {
 		}
 	};
 
+	@Deprecated // only deprecated for external use
 	public static void cosmMenuOpen(Player p){
 		Inventory inv = cosmMenu.createInv(1,"§7Menu cosmétiques");
 
