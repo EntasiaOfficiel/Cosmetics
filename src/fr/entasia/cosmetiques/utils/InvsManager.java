@@ -2,6 +2,7 @@ package fr.entasia.cosmetiques.utils;
 
 import fr.entasia.apis.menus.MenuClickEvent;
 import fr.entasia.apis.menus.MenuCreator;
+import fr.entasia.apis.other.ItemBuilder;
 import fr.entasia.apis.utils.MoneyUtils;
 import fr.entasia.cosmetiques.utils.particles.Particle;
 import fr.entasia.cosmetiques.utils.pets.CurrentPet;
@@ -76,25 +77,28 @@ public class InvsManager {
 			for(Particle c : CosmAPI.particleList){
 				if(c.itemStack.getItemMeta().getDisplayName().equals(e.item.getItemMeta().getDisplayName())){
 					if(CosmAPI.haveCosm(c.id,e.player.getUniqueId(), false)){
-						e.player.sendMessage("§7Vous avez activé la particule "+c.nom);
-						CosmeticPlayer.getCosPlay(e.player).particle = c;
+						e.player.sendMessage("§aTu as activé la particule "+c.name+" !");
+						CosmAPI.getCosPlay(e.player).particle = c;
 						e.player.closeInventory();
 					} else{
-						e.player.closeInventory();
-						openParticleBuyMenu(e.player,c);
-
+						openParticleBuyMenu(e.player, c);
 					}
 					return;
 				}
 			}
-			if(e.item.getItemMeta().getDisplayName().equals("§cRetour")){
-				cosmMenuOpen(e.player);
-			}else if(e.item.getItemMeta().getDisplayName().equals("§cEnlever les particules")){
-				CosmeticPlayer c = CosmeticPlayer.getCosPlay(e.player);
-				if(c.particle==null)e.player.sendMessage("§7Vous n'avez pas de particule activée !");
-				else{
-					c.particle = null;
-					e.player.sendMessage("§7Vous avez enlevé votre particule");
+			switch(e.item.getType()){
+				case REDSTONE_BLOCK:{
+					CosmeticPlayer c = CosmAPI.getCosPlay(e.player);
+					if(c.particle==null)e.player.sendMessage("§cTu n'as pas de particule activée !");
+					else{
+						c.particle = null;
+						e.player.sendMessage("§aTu as enlevé ta particule");
+					}
+					break;
+				}
+				case BOOK_AND_QUILL:{
+					cosmMenuOpen(e.player);
+					break;
 				}
 			}
 			e.player.closeInventory();
@@ -115,34 +119,35 @@ public class InvsManager {
 			ItemStack item = c.itemStack.clone();
 			ItemMeta meta = item.getItemMeta();
 			ArrayList<String> lore = new ArrayList<>(Collections.singletonList(c.description));
-			CosmeticPlayer cp = CosmeticPlayer.getCosPlay(p);
+			CosmeticPlayer cp = CosmAPI.getCosPlay(p);
 
 			if(cp.particle!=null && cp.particle.equals(c)){
 				lore.add("§6Cette particule est déjà activée");
 				meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 				meta.addEnchant(Enchantment.LURE, 1, false);
 			}else if(CosmAPI.haveCosm(c.id,p.getUniqueId(), false)){
-				lore.add("§aVous possédez cette particule");
+				lore.add("§aTu possède cette particule");
 				meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 				meta.addEnchant(Enchantment.LURE, 1, false);
 			} else{
-				lore.add("§cVous n'avez pas encore débloqué cette particule");
+				lore.add("§cTu n'as pas encore débloqué cette particule");
 			}
 
 			if(item.getType().equals(Material.POTION)){
 				meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
 			}
-			meta.setDisplayName(c.nom);
+			meta.setDisplayName(c.name);
 			meta.setLore(lore);
 			item.setItemMeta(meta);
 			inv.setItem(nextSlot, item);
 			nextSlot= nextSlot+2;
 		}
-		ItemStack item = new ItemStack(Material.REDSTONE_BLOCK);
-		ItemMeta meta=  item.getItemMeta();
-		meta.setDisplayName("§cEnlever les particules");
-		item.setItemMeta(meta);
-		inv.setItem(slot-1,item);
+
+		ItemBuilder item = new ItemBuilder(Material.REDSTONE_BLOCK).lore("§cEnlever les particules");
+		inv.setItem(slot-2, item.build());
+
+		item = new ItemBuilder(Material.BOOK_AND_QUILL).lore("§cRetour au menu précédent");
+		inv.setItem(slot-1, item.build());
 
 		p.openInventory(inv);
 	}
@@ -154,7 +159,7 @@ public class InvsManager {
 			for(Pet c : CosmAPI.petList){
 				if(c.name.equalsIgnoreCase(e.item.getItemMeta().getDisplayName())){
 					if(CosmAPI.haveCosm(c.id,e.player.getUniqueId(), true)){
-						e.player.sendMessage("§7Vous avez activé le pet "+c.name);
+						e.player.sendMessage("§aTu as activé le pet "+c.name);
 						PetsUtils.spawnPet(e.player, c);
 						e.player.closeInventory();
 					} else{
@@ -165,19 +170,25 @@ public class InvsManager {
 					return;
 				}
 			}
-			if(e.item.getItemMeta().getDisplayName().equals("§cRetour")){
-				cosmMenuOpen(e.player);
-			}else if(e.item.getItemMeta().getDisplayName().equals("§cEnlever le pet")){
-				CosmeticPlayer c = CosmeticPlayer.getCosPlay(e.player);
-				if(c.pet==null)e.player.sendMessage("§7Vous n'avez pas de pet activé !");
-				else{
-					CurrentPet cPet = c.pet;
-					c.pet = null;
-					cPet.origin.remove();
-					for(ASData asd : cPet.armor_stands){
-						asd.ent.remove();
+
+			switch(e.item.getType()){
+				case REDSTONE_BLOCK:{
+					CosmeticPlayer c = CosmAPI.getCosPlay(e.player);
+					if(c.pet==null)e.player.sendMessage("§cTu n'as pas de pet activé !");
+					else {
+						CurrentPet cPet = c.pet;
+						c.pet = null;
+						cPet.origin.remove();
+						for (ASData asd : cPet.armor_stands) {
+							asd.ent.remove();
+						}
+						e.player.sendMessage("§aTu as enlevé ton pet");
 					}
-					e.player.sendMessage("§7Vous avez enlevé votre pet");
+					break;
+				}
+				case BOOK_AND_QUILL:{
+					cosmMenuOpen(e.player);
+					break;
 				}
 			}
 			e.player.closeInventory();
@@ -186,10 +197,8 @@ public class InvsManager {
 
 	public static void petMenuOpen(Player p){
 
-		int pets = 0;
-		for(Pet pet : CosmAPI.petList){
-			pets++;
-		}
+		int pets = CosmAPI.petList.size();
+
 		int slot = pets*2;
 		while( slot%9!=0){
 			slot++;
@@ -202,7 +211,7 @@ public class InvsManager {
 			ItemStack item = c.itemStack.clone();
 			ItemMeta meta = item.getItemMeta();
 			ArrayList<String> lore = new ArrayList<>(Collections.singletonList(c.description));
-			CosmeticPlayer cp = CosmeticPlayer.getCosPlay(p);
+			CosmeticPlayer cp = CosmAPI.getCosPlay(p);
 
 
 			if(cp.pet!=null && cp.pet.type.equals(c)){
@@ -210,11 +219,11 @@ public class InvsManager {
 				meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 				meta.addEnchant(Enchantment.LURE, 1, false);
 			}else if(CosmAPI.haveCosm(c.id,p.getUniqueId(), true)){
-				lore.add("§aVous possédez ce Pet");
+				lore.add("§aTu possède ce Pet");
 				meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 				meta.addEnchant(Enchantment.LURE, 1, false);
 			} else{
-				lore.add("§cVous n'avez pas encore débloqué ce Pet");
+				lore.add("§cTu n'as pas encore débloqué ce Pet");
 			}
 			if(item.equals(new ItemStack(Material.POTION))){
 				meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
@@ -226,19 +235,14 @@ public class InvsManager {
 			nextSlot= nextSlot+2;
 
 		}
-		ItemStack item = new ItemStack(Material.REDSTONE_BLOCK);
-		ItemMeta meta=  item.getItemMeta();
-		meta.setDisplayName("§cEnlever le pet");
-		item.setItemMeta(meta);
-		inv.setItem(slot-1,item);
+		ItemBuilder item = new ItemBuilder(Material.REDSTONE_BLOCK).lore("§cEnlever le pet");
+		inv.setItem(slot-2, item.build());
+
+		item = new ItemBuilder(Material.BOOK_AND_QUILL).lore("§cRetour au menu précédent");
+		inv.setItem(slot-1, item.build());
 
 		p.openInventory(inv);
 	}
-
-
-
-
-
 
 
 	public static MenuCreator buyParticleMenu = new MenuCreator() {
@@ -246,22 +250,21 @@ public class InvsManager {
 		@Override
 		public void onMenuClick(MenuClickEvent e){
 			if(e.item.getItemMeta().getDisplayName().equalsIgnoreCase("§cAnnuler")){
-
-
 				e.player.closeInventory();
 				e.player.sendMessage("§cAchat annulé");
 				return;
 			}
 			UUID uuid = e.player.getUniqueId();
 			Particle c = (Particle)e.data;
-			if(MoneyUtils.getMoney(uuid)>= c.price){
+			e.player.closeInventory();
+			if(MoneyUtils.getMoney(uuid)>=c.price){
 				MoneyUtils.removeMoney(uuid, c.price);
-				e.player.sendMessage("§2Vous avez acheté la particule "+c.nom);
-				e.player.closeInventory();
 				CosmAPI.unlockParticle(c.id,e.player.getUniqueId());
+				e.player.sendMessage("§aTu as acheté la particule "+c.name+" !");
+				CosmAPI.getCosPlay(e.player).particle = c;
+
 			} else {
-				e.player.sendMessage("§4Vous n'avez pas assez d'argent pour acheter cette particule");
-				e.player.closeInventory();
+				e.player.sendMessage("§cTu n'as pas assez d'argent pour acheter cette particule !");
 			}
 
 		}
@@ -300,11 +303,11 @@ public class InvsManager {
 			Pet c = (Pet)e.data;
 			if(MoneyUtils.getMoney(uuid)>= c.price){
 				MoneyUtils.removeMoney(uuid, c.price);
-				e.player.sendMessage("§2Vous avez acheté le pet "+c.name);
+				e.player.sendMessage("§cTu as acheté le pet "+c.name);
 				e.player.closeInventory();
 				CosmAPI.unlockPet(c.id,e.player.getUniqueId());
 			} else {
-				e.player.sendMessage("§4Vous n'avez pas assez d'argent pour acheter ce Pet");
+				e.player.sendMessage("§cTu n'as pas assez d'argent pour acheter ce Pet");
 				e.player.closeInventory();
 			}
 

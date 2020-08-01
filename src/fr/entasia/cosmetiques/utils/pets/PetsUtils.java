@@ -298,7 +298,7 @@ public class PetsUtils {
 
 			cp.armor_stands.add(asd);
 		}
-		CosmeticPlayer.getCosPlay(p).pet = cp;
+		CosmAPI.getCosPlay(p).pet = cp;
 	}
 
 	public static void removePet(CosmeticPlayer cp){

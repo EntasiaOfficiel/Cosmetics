@@ -48,7 +48,7 @@ public class Base implements Listener {
 				CurrentPet pet = cp.pet;
 				Pet pets = pet.type;
 				PetsUtils.spawnPet(p,pets);
-				p.sendMessage("§7Votre dernier pet a été respawn automatiquement");
+				p.sendMessage("§7Ton dernier pet a été respawn automatiquement");
 			}
 	    }
 	}
@@ -82,7 +82,7 @@ public class Base implements Listener {
 				CurrentPet pet = cp.pet;
 				Pet pets = pet.type;
 				PetsUtils.spawnPet(p, pets);
-				p.sendMessage("§7Votre dernier pet a été respawn automatiquement");
+				p.sendMessage("§7Ton dernier pet a été respawn automatiquement");
 			}
 		}
 	}
@@ -91,7 +91,7 @@ public class Base implements Listener {
 	@EventHandler
 	public void onPetHurtPet(EntityDamageByEntityEvent e){
 		if(e.getEntity().hasMetadata("Pet")) e.setCancelled(true);
-		if(e.getDamager().hasMetadata("Pet")) e.setCancelled(true);
+		else if(e.getDamager().hasMetadata("Pet")) e.setCancelled(true);
 	}
 
 	@EventHandler

@@ -79,4 +79,13 @@ public class CosmAPI {
 	public static void openCosmMenu(Player p){
 		InvsManager.cosmMenuOpen(p);
 	}
+
+	public static CosmeticPlayer getCosPlay(Player p){
+		CosmeticPlayer cp = CosmAPI.playerCache.get(p.getUniqueId());
+		if(cp==null){
+			cp = new CosmeticPlayer(p);
+			CosmAPI.playerCache.put(p.getUniqueId(), cp);
+		}
+		return cp;
+	}
 }

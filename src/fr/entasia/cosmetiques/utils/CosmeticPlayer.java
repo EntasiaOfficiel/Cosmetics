@@ -23,6 +23,7 @@ public class CosmeticPlayer {
         return particle!=null;
     }
 
+    @Deprecated
     public static CosmeticPlayer getCosPlay(Player p){
         CosmeticPlayer cp = CosmAPI.playerCache.get(p.getUniqueId());
         if(cp==null){

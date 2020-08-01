@@ -8,14 +8,14 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class Particle {
 
 
-    Particle(int id, ItemStack item, String nom,String description, int price, ParticleStruct... structs){
+    Particle(int id, ItemStack item, String name, String description, int price, ParticleStruct... structs){
         this.price = price;
         this.id = id;
         this.itemStack = item;
-        this.nom = nom;
+        this.name = name;
         this.description = description;
         ItemMeta meta = itemStack.getItemMeta();
-        meta.setDisplayName(nom);
+        meta.setDisplayName(name);
         itemStack.setItemMeta(meta);
         this.structs = structs;
     }
@@ -23,7 +23,7 @@ public class Particle {
     public int id;
     public ItemStack itemStack;
     public int price;
-    public String nom;
+    public String name;
     public String description;
     public ParticleStruct[] structs;
 
