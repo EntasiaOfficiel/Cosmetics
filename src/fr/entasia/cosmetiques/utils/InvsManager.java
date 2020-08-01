@@ -94,6 +94,7 @@ public class InvsManager {
 						c.particle = null;
 						e.player.sendMessage("§aTu as enlevé ta particule");
 					}
+					e.player.closeInventory();
 					break;
 				}
 				case BOOK_AND_QUILL:{
@@ -101,7 +102,6 @@ public class InvsManager {
 					break;
 				}
 			}
-			e.player.closeInventory();
 		}
 	};
 
@@ -143,10 +143,10 @@ public class InvsManager {
 			nextSlot= nextSlot+2;
 		}
 
-		ItemBuilder item = new ItemBuilder(Material.REDSTONE_BLOCK).lore("§cEnlever les particules");
+		ItemBuilder item = new ItemBuilder(Material.REDSTONE_BLOCK).name("§cEnlever les particules");
 		inv.setItem(slot-2, item.build());
 
-		item = new ItemBuilder(Material.BOOK_AND_QUILL).lore("§cRetour au menu précédent");
+		item = new ItemBuilder(Material.BOOK_AND_QUILL).name("§cRetour au menu précédent");
 		inv.setItem(slot-1, item.build());
 
 		p.openInventory(inv);
@@ -156,6 +156,7 @@ public class InvsManager {
 	public static MenuCreator petMenu = new MenuCreator(){
 		@Override
 		public void onMenuClick(MenuClickEvent e){
+			System.out.println(1);
 			for(Pet c : CosmAPI.petList){
 				if(c.name.equalsIgnoreCase(e.item.getItemMeta().getDisplayName())){
 					if(CosmAPI.haveCosm(c.id,e.player.getUniqueId(), true)){
@@ -168,6 +169,9 @@ public class InvsManager {
 					return;
 				}
 			}
+
+			System.out.println(2);
+			System.out.println(e.item.getType());
 
 			switch(e.item.getType()){
 				case REDSTONE_BLOCK:{
@@ -182,6 +186,7 @@ public class InvsManager {
 						}
 						e.player.sendMessage("§aTu as enlevé ton pet");
 					}
+					e.player.closeInventory();
 					break;
 				}
 				case BOOK_AND_QUILL:{
@@ -189,7 +194,6 @@ public class InvsManager {
 					break;
 				}
 			}
-			e.player.closeInventory();
 		}
 	};
 
@@ -233,10 +237,10 @@ public class InvsManager {
 			nextSlot= nextSlot+2;
 
 		}
-		ItemBuilder item = new ItemBuilder(Material.REDSTONE_BLOCK).lore("§cEnlever le pet");
+		ItemBuilder item = new ItemBuilder(Material.REDSTONE_BLOCK).name("§cEnlever le pet");
 		inv.setItem(slot-2, item.build());
 
-		item = new ItemBuilder(Material.BOOK_AND_QUILL).lore("§cRetour au menu précédent");
+		item = new ItemBuilder(Material.BOOK_AND_QUILL).name("§cRetour au menu précédent");
 		inv.setItem(slot-1, item.build());
 
 		p.openInventory(inv);
@@ -286,8 +290,8 @@ public class InvsManager {
 		refuserMeta.setLore(Collections.singletonList("§cAnnuler l'achat"));
 		refuser.setItemMeta(refuserMeta);
 
-		inv.setItem(11,achat);
-		inv.setItem(15,refuser);
+		inv.setItem(11, achat);
+		inv.setItem(15, refuser);
 
 		p.openInventory(inv);
 	}
