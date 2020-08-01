@@ -156,7 +156,6 @@ public class InvsManager {
 	public static MenuCreator petMenu = new MenuCreator(){
 		@Override
 		public void onMenuClick(MenuClickEvent e){
-			System.out.println(1);
 			for(Pet c : CosmAPI.petList){
 				if(c.name.equalsIgnoreCase(e.item.getItemMeta().getDisplayName())){
 					if(CosmAPI.haveCosm(c.id,e.player.getUniqueId(), true)){
@@ -169,9 +168,6 @@ public class InvsManager {
 					return;
 				}
 			}
-
-			System.out.println(2);
-			System.out.println(e.item.getType());
 
 			switch(e.item.getType()){
 				case REDSTONE_BLOCK:{
