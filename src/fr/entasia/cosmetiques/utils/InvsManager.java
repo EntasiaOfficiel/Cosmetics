@@ -163,9 +163,7 @@ public class InvsManager {
 						PetsUtils.spawnPet(e.player, c);
 						e.player.closeInventory();
 					} else{
-						e.player.closeInventory();
 						openPetBuyMenu(e.player,c);
-
 					}
 					return;
 				}
@@ -249,7 +247,7 @@ public class InvsManager {
 
 		@Override
 		public void onMenuClick(MenuClickEvent e){
-			if(e.item.getItemMeta().getDisplayName().equalsIgnoreCase("§cAnnuler")){
+			if(e.item.getType()==Material.REDSTONE_BLOCK){
 				e.player.closeInventory();
 				e.player.sendMessage("§cAchat annulé");
 				return;
@@ -282,7 +280,7 @@ public class InvsManager {
 		achat.setItemMeta(achatMeta);
 
 
-		ItemStack refuser= new ItemStack(Material.STAINED_GLASS_PANE,1, (byte) 14);
+		ItemStack refuser= new ItemStack(Material.REDSTONE_BLOCK);
 		ItemMeta refuserMeta= refuser.getItemMeta();
 		refuserMeta.setDisplayName("§cAnnuler");
 		refuserMeta.setLore(Collections.singletonList("§cAnnuler l'achat"));
