@@ -11,7 +11,7 @@ import fr.entasia.cosmetiques.utils.particles.ParticleUtils;
 import fr.entasia.cosmetiques.utils.pets.CurrentPet;
 import fr.entasia.cosmetiques.utils.pets.PetsUtils;
 import fr.entasia.cosmetiques.utils.pets.as.ASData;
-import fr.entasia.cosmetiques.versions.MultiVersions;
+import fr.entasia.cosmetiques.versions.CPathFinder;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -19,7 +19,7 @@ public class Main extends JavaPlugin {
 
 	public static Main main;
 
-	public static MultiVersions multiversion;
+	public static CPathFinder multiversion;
 
 	public static SQLConnection sql;
 	@Override
@@ -32,7 +32,7 @@ public class Main extends JavaPlugin {
 			ParticleUtils.registerAllParticle();
 			PetsUtils.registerAllPet();
 			Class<?> cl = Class.forName("fr.entasia.cosmetiques.versions."+ ServerUtils.version);
-			multiversion = (MultiVersions) cl.newInstance();
+			multiversion = (CPathFinder) cl.newInstance();
 
 			new RecurrentTask().runTaskTimerAsynchronously(this, 0, 1);
 

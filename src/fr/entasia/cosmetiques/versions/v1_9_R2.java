@@ -9,7 +9,7 @@ import org.bukkit.craftbukkit.v1_9_R2.entity.CraftPlayer;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
-public class v1_9_R2 implements MultiVersions {
+public class v1_9_R2 implements CPathFinder {
 
 	public static class EntasiaPath extends PathfinderGoal {
 
