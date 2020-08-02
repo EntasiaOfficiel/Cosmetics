@@ -81,7 +81,7 @@ public class InvsManager {
 						CosmAPI.getCosPlay(e.player).particle = c;
 						e.player.closeInventory();
 					} else{
-						openParticleBuyMenu(e.player, c);
+						particleBuyMenuOpen(e.player, c);
 					}
 					return;
 				}
@@ -163,7 +163,7 @@ public class InvsManager {
 						PetsUtils.spawnPet(e.player, c);
 						e.player.closeInventory();
 					} else{
-						openPetBuyMenu(e.player,c);
+						petBuyMenuOpen(e.player,c);
 					}
 					return;
 				}
@@ -247,47 +247,35 @@ public class InvsManager {
 
 		@Override
 		public void onMenuClick(MenuClickEvent e){
-			if(e.item.getType()==Material.REDSTONE_BLOCK){
+			if(e.item.getType()==Material.REDSTONE_BLOCK) particleMenuOpen(e.player);
+			else{
+				UUID uuid = e.player.getUniqueId();
+				Particle c = (Particle)e.data;
 				e.player.closeInventory();
-				e.player.sendMessage("§cAchat annulé");
-				return;
-			}
-			UUID uuid = e.player.getUniqueId();
-			Particle c = (Particle)e.data;
-			e.player.closeInventory();
-			if(MoneyUtils.getMoney(uuid)>=c.price){
-				MoneyUtils.removeMoney(uuid, c.price);
-				CosmAPI.unlockParticle(c.id,e.player.getUniqueId());
-				e.player.sendMessage("§aTu as acheté la particule "+c.name+" !");
-				CosmAPI.getCosPlay(e.player).particle = c;
+				if(MoneyUtils.getMoney(uuid)>=c.price){
+					MoneyUtils.removeMoney(uuid, c.price);
+					CosmAPI.unlockParticle(c.id,e.player.getUniqueId());
+					e.player.sendMessage("§aTu as acheté la particule "+c.name+" !");
+					CosmAPI.getCosPlay(e.player).particle = c;
 
-			} else {
-				e.player.sendMessage("§cTu n'as pas assez d'argent pour acheter cette particule !");
+				} else {
+					e.player.sendMessage("§cTu n'as pas assez d'argent pour acheter cette particule !");
+				}
 			}
 
 		}
 	};
 
-	public static void openParticleBuyMenu(Player p, Particle c){
+	public static void particleBuyMenuOpen(Player p, Particle c){
 		Inventory inv = buyParticleMenu.createInv(2,"§7Achat d'une particule", c);
 
-		ItemStack cosmetique=c.itemStack;
-		inv.setItem(4,cosmetique);
-		ItemStack achat= new ItemStack(Material.STAINED_GLASS_PANE,1, (byte) 5);
-		ItemMeta achatMeta= achat.getItemMeta();
-		achatMeta.setDisplayName("§2Acheter");
-		achatMeta.setLore(Collections.singletonList("§2Cout : "+c.price +" coins"));
-		achat.setItemMeta(achatMeta);
+		inv.setItem(4, c.itemStack);
 
-
-		ItemStack refuser= new ItemStack(Material.REDSTONE_BLOCK);
-		ItemMeta refuserMeta= refuser.getItemMeta();
-		refuserMeta.setDisplayName("§cAnnuler");
-		refuserMeta.setLore(Collections.singletonList("§cAnnuler l'achat"));
-		refuser.setItemMeta(refuserMeta);
-
-		inv.setItem(11, achat);
-		inv.setItem(15, refuser);
+		ItemBuilder item = new ItemBuilder(Material.STAINED_GLASS_PANE).damage(5).name("§2Acheter").
+				lore("§2Cout : "+c.price +" coins");
+		inv.setItem(11, item.build());
+		item = new ItemBuilder(Material.REDSTONE_BLOCK).name("§cAnnuler").lore("§cAnnuler l'achat");
+		inv.setItem(15, item.build());
 
 		p.openInventory(inv);
 	}
@@ -296,42 +284,33 @@ public class InvsManager {
 
 		@Override
 		public void onMenuClick(MenuClickEvent e){
-			if(e.item.getItemMeta().getDisplayName().equalsIgnoreCase("§cAnnuler")) e.player.closeInventory();
-			UUID uuid = e.player.getUniqueId();
-			Pet c = (Pet)e.data;
-			if(MoneyUtils.getMoney(uuid)>= c.price){
-				MoneyUtils.removeMoney(uuid, c.price);
-				e.player.sendMessage("§cTu as acheté le pet "+c.name);
-				e.player.closeInventory();
-				CosmAPI.unlockPet(c.id,e.player.getUniqueId());
-			} else {
-				e.player.sendMessage("§cTu n'as pas assez d'argent pour acheter ce Pet");
-				e.player.closeInventory();
+			if(e.item.getType()==Material.REDSTONE_BLOCK) petMenuOpen(e.player);
+			else{
+				UUID uuid = e.player.getUniqueId();
+				Pet c = (Pet)e.data;
+				if(MoneyUtils.getMoney(uuid)>= c.price){
+					MoneyUtils.removeMoney(uuid, c.price);
+					e.player.sendMessage("§cTu as acheté le pet "+c.name+" !");
+					e.player.closeInventory();
+					CosmAPI.unlockPet(c.id,e.player.getUniqueId());
+				} else {
+					e.player.sendMessage("§cTu n'as pas assez d'argent pour acheter ce Pet");
+					e.player.closeInventory();
+				}
 			}
-
 		}
 	};
 
-	public static void openPetBuyMenu(Player p, Pet c){
+	public static void petBuyMenuOpen(Player p, Pet c){
 		Inventory inv = buyPetMenu.createInv(2,"§7Achat d'un Pet", c);
 
-		ItemStack cosmetique=c.itemStack;
-		inv.setItem(4,cosmetique);
-		ItemStack achat= new ItemStack(Material.STAINED_GLASS_PANE,1, (byte) 5);
-		ItemMeta achatMeta= achat.getItemMeta();
-		achatMeta.setDisplayName("§2Acheter");
-		achatMeta.setLore(Collections.singletonList("§2Cout : "+c.price +" coins"));
-		achat.setItemMeta(achatMeta);
+		inv.setItem(4, c.itemStack);
 
-
-		ItemStack refuser= new ItemStack(Material.STAINED_GLASS_PANE,1, (byte) 14);
-		ItemMeta refuserMeta= refuser.getItemMeta();
-		refuserMeta.setDisplayName("§cAnnuler");
-		refuserMeta.setLore(Collections.singletonList("§cAnnuler l'achat"));
-		refuser.setItemMeta(refuserMeta);
-
-		inv.setItem(11,achat);
-		inv.setItem(15,refuser);
+		ItemBuilder item = new ItemBuilder(Material.STAINED_GLASS_PANE).damage(5).name("§2Acheter").
+				lore("§2Cout : "+c.price +" coins");
+		inv.setItem(11, item.build());
+		item = new ItemBuilder(Material.REDSTONE_BLOCK).name("§cAnnuler").lore("§cAnnuler l'achat");
+		inv.setItem(15, item.build());
 
 		p.openInventory(inv);
 	}
