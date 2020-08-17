@@ -1,15 +1,18 @@
 package fr.entasia.cosmetiques.versions;
 
-import net.minecraft.server.v1_9_R2.EntityInsentient;
-import net.minecraft.server.v1_9_R2.EntityLiving;
-import net.minecraft.server.v1_9_R2.EntityPlayer;
-import net.minecraft.server.v1_9_R2.PathfinderGoal;
-import org.bukkit.craftbukkit.v1_9_R2.entity.CraftLivingEntity;
-import org.bukkit.craftbukkit.v1_9_R2.entity.CraftPlayer;
+import net.minecraft.server.v1_14_R1.EntityInsentient;
+import net.minecraft.server.v1_14_R1.EntityLiving;
+import net.minecraft.server.v1_14_R1.EntityPlayer;
+import net.minecraft.server.v1_14_R1.PathfinderGoal;
+import org.bukkit.craftbukkit.v1_14_R1.entity.CraftLivingEntity;
+import org.bukkit.craftbukkit.v1_14_R1.entity.CraftPlayer;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
-public class v1_9_R2 implements IPathFinder {
+import java.util.Collections;
+import java.util.EnumSet;
+
+public class v1_14_R1 implements IPathFinder {
 
 	public static class EntasiaPath extends PathfinderGoal {
 
@@ -24,7 +27,7 @@ public class v1_9_R2 implements IPathFinder {
 			this.owner = owner;
 			this.speed = speed;
 			this.distanceSquared = distance * distance;
-			this.a(3);
+			this.a(EnumSet.of(Type.TARGET));
 		}
 
 		@Override
@@ -34,7 +37,7 @@ public class v1_9_R2 implements IPathFinder {
 
 		@Override
 		public void d() {
-			this.entity.getNavigation().n();
+			this.entity.getNavigation().o();
 		}
 
 		@Override

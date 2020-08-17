@@ -3,7 +3,7 @@ package fr.entasia.cosmetiques.versions;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
-public interface CPathFinder {
+public interface IPathFinder {
 
 	void setPathGoal(LivingEntity ent, Player p);
 
