@@ -31,7 +31,7 @@ public class Main extends JavaPlugin {
 			getLogger().info("Activation du plugin...");
 			ParticleUtils.registerAllParticle();
 			PetsUtils.registerAllPet();
-			Class<?> cl = Class.forName("fr.entasia.cosmetiques.versions."+ ServerUtils.version);
+			Class<?> cl = Class.forName("fr.entasia.cosmetiques.versions."+ ServerUtils.getVersionStr());
 			multiversion = (CPathFinder) cl.newInstance();
 
 			new RecurrentTask().runTaskTimerAsynchronously(this, 0, 1);
