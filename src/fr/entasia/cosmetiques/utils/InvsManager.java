@@ -25,23 +25,21 @@ public class InvsManager {
 	public static MenuCreator cosmMenu = new MenuCreator() {
 
 		@Override
-		public void onMenuClick(MenuClickEvent e){
-		if(e.inv.getName().equalsIgnoreCase("§7Menu cosmétiques")){
-			switch(e.item.getType()) {
-				case MONSTER_EGG:{
+		public void onMenuClick(MenuClickEvent e) {
+			switch (e.item.getType()) {
+				case MONSTER_EGG: {
 					petMenuOpen(e.player);
 					break;
 				}
-				case POTION:{
+				case POTION: {
 					particleMenuOpen(e.player);
 					break;
 				}
-				default:{
+				default: {
 					e.player.sendMessage("§7Ce menu n'existe pas");
 					e.player.closeInventory();
 				}
 			}
-		}
 		}
 	};
 

@@ -6,3 +6,4 @@ main: fr.entasia.cosmetiques.Main
 depend:
   - Libraries
 version: '1.0'
+api-version: 1.12
