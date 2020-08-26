@@ -14,7 +14,7 @@ public class ParticleUtils {
 
 
 
-    public static void registerAllParticle(){
+    public static void registerAllParticles(){
         CosmAPI.registerParticle(new Particle(301, new ItemStack(Material.GLOWSTONE), "§7Auréole d'ange","§7Manque plus que les ailes et on dirait un vrai",3200,
                 new ParticleStruct() {
                     @Override

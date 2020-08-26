@@ -29,7 +29,7 @@ public class Main extends JavaPlugin {
 			sql = new SQLConnection("cosmetiques","global");
 			main = this;
 			getLogger().info("Activation du plugin...");
-			ParticleUtils.registerAllParticle();
+			ParticleUtils.registerAllParticles();
 			PetsUtils.registerAllPet();
 			Class<?> cl = Class.forName("fr.entasia.cosmetiques.versions."+ ServerUtils.getVersionStr());
 			multiversion = (IPathFinder) cl.newInstance();
