@@ -1,6 +1,6 @@
-package fr.entasia.cosmetiques.utils.pets;
+package fr.entasia.cosmetics.utils.pets;
 
-import fr.entasia.cosmetiques.utils.pets.as.ASStruc;
+import fr.entasia.cosmetics.utils.pets.as.ASStruc;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 

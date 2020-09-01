@@ -1,6 +1,6 @@
-package fr.entasia.cosmetiques.utils.particles;
+package fr.entasia.cosmetics.utils.particles;
 
-import fr.entasia.cosmetiques.utils.CosmAPI;
+import fr.entasia.cosmetics.utils.CosmAPI;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;

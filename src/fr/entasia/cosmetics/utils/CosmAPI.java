@@ -1,8 +1,8 @@
-package fr.entasia.cosmetiques.utils;
+package fr.entasia.cosmetics.utils;
 
-import fr.entasia.cosmetiques.Main;
-import fr.entasia.cosmetiques.utils.particles.Particle;
-import fr.entasia.cosmetiques.utils.pets.Pet;
+import fr.entasia.cosmetics.Main;
+import fr.entasia.cosmetics.utils.particles.Particle;
+import fr.entasia.cosmetics.utils.pets.Pet;
 import org.bukkit.entity.Player;
 
 import java.sql.PreparedStatement;

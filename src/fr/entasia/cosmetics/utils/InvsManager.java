@@ -1,14 +1,14 @@
-package fr.entasia.cosmetiques.utils;
+package fr.entasia.cosmetics.utils;
 
 import fr.entasia.apis.menus.MenuClickEvent;
 import fr.entasia.apis.menus.MenuCreator;
 import fr.entasia.apis.other.ItemBuilder;
 import fr.entasia.apis.utils.MoneyUtils;
-import fr.entasia.cosmetiques.utils.particles.Particle;
-import fr.entasia.cosmetiques.utils.pets.CurrentPet;
-import fr.entasia.cosmetiques.utils.pets.Pet;
-import fr.entasia.cosmetiques.utils.pets.PetsUtils;
-import fr.entasia.cosmetiques.utils.pets.as.ASData;
+import fr.entasia.cosmetics.utils.particles.Particle;
+import fr.entasia.cosmetics.utils.pets.CurrentPet;
+import fr.entasia.cosmetics.utils.pets.Pet;
+import fr.entasia.cosmetics.utils.pets.PetsUtils;
+import fr.entasia.cosmetics.utils.pets.as.ASData;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;

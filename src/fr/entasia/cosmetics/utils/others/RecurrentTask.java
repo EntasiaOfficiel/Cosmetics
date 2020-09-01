@@ -1,13 +1,12 @@
-package fr.entasia.cosmetiques.utils.others;
+package fr.entasia.cosmetics.utils.others;
 
-import fr.entasia.cosmetiques.Main;
-import fr.entasia.cosmetiques.utils.CosmeticPlayer;
-import fr.entasia.cosmetiques.utils.CosmAPI;
-import fr.entasia.cosmetiques.utils.particles.Particle;
-import fr.entasia.cosmetiques.utils.particles.ParticleStruct;
-import fr.entasia.cosmetiques.utils.particles.ParticleUtils;
-import fr.entasia.cosmetiques.utils.pets.CurrentPet;
-import fr.entasia.cosmetiques.utils.pets.as.ASData;
+import fr.entasia.cosmetics.Main;
+import fr.entasia.cosmetics.utils.CosmeticPlayer;
+import fr.entasia.cosmetics.utils.CosmAPI;
+import fr.entasia.cosmetics.utils.particles.Particle;
+import fr.entasia.cosmetics.utils.particles.ParticleStruct;
+import fr.entasia.cosmetics.utils.pets.CurrentPet;
+import fr.entasia.cosmetics.utils.pets.as.ASData;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

@@ -1,4 +1,4 @@
-package fr.entasia.cosmetiques.utils.pets.as;
+package fr.entasia.cosmetics.utils.pets.as;
 
 import fr.entasia.apis.utils.ItemUtils;
 import org.bukkit.inventory.ItemStack;

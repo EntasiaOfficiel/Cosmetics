@@ -1,6 +1,6 @@
-package fr.entasia.cosmetiques.utils.pets.pets;
+package fr.entasia.cosmetics.utils.pets.pets;
 
-import fr.entasia.cosmetiques.utils.pets.as.ASData;
+import fr.entasia.cosmetics.utils.pets.as.ASData;
 
 import java.util.ArrayList;
 

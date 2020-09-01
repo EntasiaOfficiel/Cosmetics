@@ -1,17 +1,17 @@
-package fr.entasia.cosmetiques;
+package fr.entasia.cosmetics;
 
 
 import fr.entasia.apis.sql.SQLConnection;
 import fr.entasia.apis.utils.ServerUtils;
-import fr.entasia.cosmetiques.listeners.Base;
-import fr.entasia.cosmetiques.utils.CosmeticPlayer;
-import fr.entasia.cosmetiques.utils.CosmAPI;
-import fr.entasia.cosmetiques.utils.others.RecurrentTask;
-import fr.entasia.cosmetiques.utils.particles.ParticleUtils;
-import fr.entasia.cosmetiques.utils.pets.CurrentPet;
-import fr.entasia.cosmetiques.utils.pets.PetsUtils;
-import fr.entasia.cosmetiques.utils.pets.as.ASData;
-import fr.entasia.cosmetiques.versions.IPathFinder;
+import fr.entasia.cosmetics.listeners.Base;
+import fr.entasia.cosmetics.utils.CosmeticPlayer;
+import fr.entasia.cosmetics.utils.CosmAPI;
+import fr.entasia.cosmetics.utils.others.RecurrentTask;
+import fr.entasia.cosmetics.utils.particles.ParticleUtils;
+import fr.entasia.cosmetics.utils.pets.CurrentPet;
+import fr.entasia.cosmetics.utils.pets.PetsUtils;
+import fr.entasia.cosmetics.utils.pets.as.ASData;
+import fr.entasia.cosmetics.versions.IPathFinder;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -25,13 +25,12 @@ public class Main extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		try{
-
-			sql = new SQLConnection("cosmetiques","global");
-			main = this;
 			getLogger().info("Activation du plugin...");
+			main = this;
+			sql = new SQLConnection().mariadb("cosmetics","global");
 			ParticleUtils.registerAllParticles();
 			PetsUtils.registerAllPet();
-			Class<?> cl = Class.forName("fr.entasia.cosmetiques.versions."+ ServerUtils.getVersionStr());
+			Class<?> cl = Class.forName("fr.entasia.cosmetics.versions."+ ServerUtils.getVersionStr());
 			multiversion = (IPathFinder) cl.newInstance();
 
 			new RecurrentTask().runTaskTimerAsynchronously(this, 0, 1);

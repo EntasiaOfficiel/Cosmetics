@@ -1,4 +1,4 @@
-package fr.entasia.cosmetiques.utils.particles;
+package fr.entasia.cosmetics.utils.particles;
 
 import org.bukkit.Location;
 import org.bukkit.inventory.ItemStack;

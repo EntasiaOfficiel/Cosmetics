@@ -1,4 +1,4 @@
-package fr.entasia.cosmetiques.versions;
+package fr.entasia.cosmetics.versions;
 
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;

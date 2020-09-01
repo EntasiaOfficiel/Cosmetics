@@ -1,6 +1,6 @@
-package fr.entasia.cosmetiques.utils.pets;
+package fr.entasia.cosmetics.utils.pets;
 
-import fr.entasia.cosmetiques.utils.pets.as.ASData;
+import fr.entasia.cosmetics.utils.pets.as.ASData;
 import org.bukkit.Location;
 import org.bukkit.entity.Chicken;
 

@@ -1,14 +1,14 @@
-package fr.entasia.cosmetiques.utils.pets;
+package fr.entasia.cosmetics.utils.pets;
 
 import fr.entasia.apis.nbt.EntityNBT;
 import fr.entasia.apis.nbt.NBTComponent;
 import fr.entasia.apis.utils.ItemUtils;
-import fr.entasia.cosmetiques.Main;
-import fr.entasia.cosmetiques.utils.CosmeticPlayer;
-import fr.entasia.cosmetiques.utils.CosmAPI;
-import fr.entasia.cosmetiques.utils.pets.as.ASData;
-import fr.entasia.cosmetiques.utils.pets.as.ASFrame;
-import fr.entasia.cosmetiques.utils.pets.as.ASStruc;
+import fr.entasia.cosmetics.Main;
+import fr.entasia.cosmetics.utils.CosmeticPlayer;
+import fr.entasia.cosmetics.utils.CosmAPI;
+import fr.entasia.cosmetics.utils.pets.as.ASData;
+import fr.entasia.cosmetics.utils.pets.as.ASFrame;
+import fr.entasia.cosmetics.utils.pets.as.ASStruc;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.entity.ArmorStand;

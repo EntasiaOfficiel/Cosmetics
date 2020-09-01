@@ -1,4 +1,4 @@
-package fr.entasia.cosmetiques.versions;
+package fr.entasia.cosmetics.versions;
 
 import net.minecraft.server.v1_14_R1.EntityInsentient;
 import net.minecraft.server.v1_14_R1.EntityLiving;
@@ -9,7 +9,6 @@ import org.bukkit.craftbukkit.v1_14_R1.entity.CraftPlayer;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
-import java.util.Collections;
 import java.util.EnumSet;
 
 public class v1_14_R1 implements IPathFinder {

@@ -1,7 +1,7 @@
-package fr.entasia.cosmetiques.utils;
+package fr.entasia.cosmetics.utils;
 
-import fr.entasia.cosmetiques.utils.particles.Particle;
-import fr.entasia.cosmetiques.utils.pets.CurrentPet;
+import fr.entasia.cosmetics.utils.particles.Particle;
+import fr.entasia.cosmetics.utils.pets.CurrentPet;
 import org.bukkit.entity.Player;
 
 public class CosmeticPlayer {

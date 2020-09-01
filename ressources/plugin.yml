@@ -1,8 +1,8 @@
-name: Cosmetiques
+name: Cosmetics
 authors:
   - iTrooz_
   - Stargeyt
-main: fr.entasia.cosmetiques.Main
+main: fr.entasia.cosmetics.Main
 depend:
   - Libraries
 version: '1.0'

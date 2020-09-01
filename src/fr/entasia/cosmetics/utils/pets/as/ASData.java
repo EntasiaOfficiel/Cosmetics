@@ -1,9 +1,5 @@
-package fr.entasia.cosmetiques.utils.pets.as;
+package fr.entasia.cosmetics.utils.pets.as;
 
-import fr.entasia.cosmetiques.Main;
-import fr.entasia.cosmetiques.utils.pets.CurrentPet;
-import fr.entasia.cosmetiques.utils.pets.PetsUtils;
-import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.util.Vector;
 

@@ -1,10 +1,10 @@
-package fr.entasia.cosmetiques.listeners;
+package fr.entasia.cosmetics.listeners;
 
-import fr.entasia.cosmetiques.utils.CosmeticPlayer;
-import fr.entasia.cosmetiques.utils.CosmAPI;
-import fr.entasia.cosmetiques.utils.pets.CurrentPet;
-import fr.entasia.cosmetiques.utils.pets.Pet;
-import fr.entasia.cosmetiques.utils.pets.PetsUtils;
+import fr.entasia.cosmetics.utils.CosmeticPlayer;
+import fr.entasia.cosmetics.utils.CosmAPI;
+import fr.entasia.cosmetics.utils.pets.CurrentPet;
+import fr.entasia.cosmetics.utils.pets.Pet;
+import fr.entasia.cosmetics.utils.pets.PetsUtils;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

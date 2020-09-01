@@ -1,8 +1,8 @@
-package fr.entasia.cosmetiques.utils.pets.as;
+package fr.entasia.cosmetics.utils.pets.as;
 
-import fr.entasia.cosmetiques.Main;
-import fr.entasia.cosmetiques.utils.pets.CurrentPet;
-import fr.entasia.cosmetiques.utils.pets.PetsUtils;
+import fr.entasia.cosmetics.Main;
+import fr.entasia.cosmetics.utils.pets.CurrentPet;
+import fr.entasia.cosmetics.utils.pets.PetsUtils;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
