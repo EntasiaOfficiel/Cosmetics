@@ -5,5 +5,4 @@ authors:
 main: fr.entasia.cosmetics.Main
 depend:
   - Libraries
-version: '1.0'
-api-version: 1.12
+version: '-1'
