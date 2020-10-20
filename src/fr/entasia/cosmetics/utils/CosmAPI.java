@@ -15,8 +15,8 @@ import java.util.UUID;
 public class CosmAPI {
 
 	public static HashMap<UUID, CosmeticPlayer> playerCache = new HashMap<>();
-	public static ArrayList<Particle> particleList = new ArrayList<Particle>();
-	public static ArrayList<Pet> petList = new ArrayList<Pet>();
+	public static ArrayList<Particle> particleList = new ArrayList<>();
+	public static ArrayList<Pet> petList = new ArrayList<>();
 
 
 	public static void registerParticle(Particle particle){
@@ -77,7 +77,7 @@ public class CosmAPI {
 	}
 
 	public static void openCosmMenu(Player p){
-		InvsManager.cosmMenuOpen(p);
+		InvsManager.cosmMenuOpen(p); // normal
 	}
 
 	public static CosmeticPlayer getCosPlay(Player p){

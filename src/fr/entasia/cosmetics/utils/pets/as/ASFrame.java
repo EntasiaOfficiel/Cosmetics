@@ -45,7 +45,7 @@ public class ASFrame {
 
 	public ASFrame setHead(ItemStack item, String uuidstr, String texture){
 		SkullMeta meta = (SkullMeta) item.getItemMeta();
-		ItemUtils.setTexture(meta, ItemUtils.genProfile(uuidstr, texture));
+		ItemUtils.setProfile(meta, ItemUtils.genProfile(uuidstr, texture));
 		item.setItemMeta(meta);
 		this.head = item;
 		return this;
@@ -70,7 +70,7 @@ public class ASFrame {
 
 	public ASFrame setRightArm(ItemStack item, String texture){
 		SkullMeta meta = (SkullMeta) item.getItemMeta();
-		ItemUtils.setTexture(meta, ItemUtils.genProfile(UUID.fromString("right-arm:pet"), texture));
+		ItemUtils.setProfile(meta, ItemUtils.genProfile(UUID.fromString("right-arm:pet"), texture));
 		item.setItemMeta(meta);
 		this.rightarm=item;
 		return this;
@@ -90,7 +90,7 @@ public class ASFrame {
 
 	public ASFrame setLeftArm(ItemStack item, String texture){
 		SkullMeta meta = (SkullMeta) item.getItemMeta();
-		ItemUtils.setTexture(meta, ItemUtils.genProfile(UUID.fromString("left-arm:pet"), texture));
+		ItemUtils.setProfile(meta, ItemUtils.genProfile(UUID.fromString("left-arm:pet"), texture));
 		item.setItemMeta(meta);
 		this.head=item;
 		return this;
