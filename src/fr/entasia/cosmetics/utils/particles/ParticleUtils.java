@@ -2,8 +2,9 @@ package fr.entasia.cosmetics.utils.particles;
 
 import fr.entasia.cosmetics.utils.CosmAPI;
 import org.bukkit.Location;
+
 import org.bukkit.Material;
-import org.bukkit.entity.EntityType;
+
 import org.bukkit.inventory.ItemStack;
 
 import java.awt.*;
@@ -79,7 +80,7 @@ public class ParticleUtils {
                         }}
                 }.setFrameRate(5)
         ));
-        CosmAPI.registerParticle(new Particle(304, new ItemStack(Material.ENCHANTMENT_TABLE), "§7Trainée magique","§7Je suis ... Doctor Strange",3200,
+        CosmAPI.registerParticle(new Particle(304, new ItemStack(Material.ENCHANTING_TABLE), "§7Trainée magique","§7Je suis ... Doctor Strange",3200,
                 new ParticleStruct() {
 
                     @Override
@@ -151,7 +152,7 @@ public class ParticleUtils {
                         }
                     }
                 }.setFrameRate(1)));
-        CosmAPI.registerParticle(new Particle(306, new ItemStack(Material.MONSTER_EGG,1, EntityType.OCELOT.getTypeId()), "§7Nyan Cat","§7N'avez-vous jamais rêvé d'être un Nyan Cat ?",3200,
+        CosmAPI.registerParticle(new Particle(306, new ItemStack(Material.OCELOT_SPAWN_EGG,1), "§7Nyan Cat","§7N'avez-vous jamais rêvé d'être un Nyan Cat ?",3200,
                 new ParticleStruct() {
 
                     @Override
@@ -181,7 +182,7 @@ public class ParticleUtils {
 
                     }
                 }.setFrameRate(1)));
-        CosmAPI.registerParticle(new Particle(308, new ItemStack(Material.WOOL,1,(byte) 14), "§7Aura de coeur","§7Partagez un peu d'amour avec les autres joueurs",3200,
+        CosmAPI.registerParticle(new Particle(308, new ItemStack(Material.RED_WOOL,1), "§7Aura de coeur","§7Partagez un peu d'amour avec les autres joueurs",3200,
                 new ParticleStruct() {
 
                     @Override

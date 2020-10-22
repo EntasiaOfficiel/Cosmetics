@@ -12,7 +12,7 @@ public class Pet {
         this.norotate=norotate;
         this.description= description;
         this.id = id;
-        this.itemStack = PetsUtils.getSkull(new ItemStack(Material.SKULL_ITEM, 1, (short)3), uuidstr, texture);
+        this.itemStack = PetsUtils.getSkull(new ItemStack(Material.PLAYER_HEAD, 1, (short)3), uuidstr, texture);
         this.name = name;
         ItemMeta meta = itemStack.getItemMeta();
         itemStack.setItemMeta(meta);

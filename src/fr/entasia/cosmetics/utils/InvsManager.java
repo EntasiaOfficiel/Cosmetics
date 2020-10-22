@@ -27,7 +27,7 @@ public class InvsManager {
 		@Override
 		public void onMenuClick(MenuClickEvent e) {
 			switch (e.item.getType()) {
-				case MONSTER_EGG: {
+				case WOLF_SPAWN_EGG: {
 					petMenuOpen(e.player);
 					break;
 				}
@@ -47,7 +47,7 @@ public class InvsManager {
 	public static void cosmMenuOpen(Player p){
 		Inventory inv = cosmMenu.createInv(1,"§7Menu cosmétiques");
 
-		ItemStack itemPet = new ItemStack(Material.MONSTER_EGG, 1, EntityType.WOLF.getTypeId());
+		ItemStack itemPet = new ItemStack(Material.WOLF_SPAWN_EGG, 1);
 		ItemMeta petMeta = itemPet.getItemMeta();
 		petMeta.setDisplayName("§7Menu des pets");
 		itemPet.setItemMeta(petMeta);
@@ -95,7 +95,7 @@ public class InvsManager {
 					e.player.closeInventory();
 					break;
 				}
-				case BOOK_AND_QUILL:{
+				case WRITABLE_BOOK:{
 					cosmMenuOpen(e.player);
 					break;
 				}
@@ -144,7 +144,7 @@ public class InvsManager {
 		ItemBuilder item = new ItemBuilder(Material.REDSTONE_BLOCK).name("§cEnlever les particules");
 		inv.setItem(slot-2, item.build());
 
-		item = new ItemBuilder(Material.BOOK_AND_QUILL).name("§cRetour au menu précédent");
+		item = new ItemBuilder(Material.WRITABLE_BOOK).name("§cRetour au menu précédent");
 		inv.setItem(slot-1, item.build());
 
 		p.openInventory(inv);
@@ -183,7 +183,7 @@ public class InvsManager {
 					e.player.closeInventory();
 					break;
 				}
-				case BOOK_AND_QUILL:{
+				case WRITABLE_BOOK:{
 					cosmMenuOpen(e.player);
 					break;
 				}
@@ -234,7 +234,7 @@ public class InvsManager {
 		ItemBuilder item = new ItemBuilder(Material.REDSTONE_BLOCK).name("§cEnlever le pet");
 		inv.setItem(slot-2, item.build());
 
-		item = new ItemBuilder(Material.BOOK_AND_QUILL).name("§cRetour au menu précédent");
+		item = new ItemBuilder(Material.WRITABLE_BOOK).name("§cRetour au menu précédent");
 		inv.setItem(slot-1, item.build());
 
 		p.openInventory(inv);
@@ -269,7 +269,7 @@ public class InvsManager {
 
 		inv.setItem(4, c.itemStack);
 
-		ItemBuilder item = new ItemBuilder(Material.STAINED_GLASS_PANE).damage(5).name("§2Acheter").
+		ItemBuilder item = new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).name("§2Acheter").
 				lore("§2Cout : "+c.price +" coins");
 		inv.setItem(11, item.build());
 		item = new ItemBuilder(Material.REDSTONE_BLOCK).name("§cAnnuler").lore("§cAnnuler l'achat");
@@ -304,7 +304,7 @@ public class InvsManager {
 
 		inv.setItem(4, c.itemStack);
 
-		ItemBuilder item = new ItemBuilder(Material.STAINED_GLASS_PANE).damage(5).name("§2Acheter").
+		ItemBuilder item = new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).name("§2Acheter").
 				lore("§2Cout : "+c.price +" coins");
 		inv.setItem(11, item.build());
 		item = new ItemBuilder(Material.REDSTONE_BLOCK).name("§cAnnuler").lore("§cAnnuler l'achat");
